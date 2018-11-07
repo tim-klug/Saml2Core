@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<samlp:AuthnRequest
+                 ID="bc03ee71716ecf8478230833947317af9d02e5d8e9641aaf254e0151de05a77a"
+                 Version="2.0"
+                 Consent=""
+                 IssueInstant="2018-06-29T15:07:09.9095898Z"
+                 Destination="https://s-devdc12.otsdev.la.gov/adfs/ls/"
+                 ForceAuthn="false"
+                 IsPassive="false"
+                 ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                 AssertionConsumerServiceURL="https://localhost:44344/Saml2/AssertionConsumerService"
+                 AssertionConsumerServiceIndex=""
+                 AttributeConsumingServiceIndex=""
+                 ProviderName=""
+                 xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+                 xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+  <saml:Issuer
+    NameQualifier=""
+    SPNameQualifier=""
+    Format=""
+    SPProvidedID=""
+     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+    https://my.la.gov.localhost
+  </saml:Issuer>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="#_a8bdd25a42ba489683247102efd9717c">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+          <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>haBsPWUuckU3no2PL0ES6Q9JMrM=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>
+      g5eM9yPnKsmmE/Kh2qS7nfK8HoF6yHrAdNQxh70kh8pRI4KaNbYNOL9sF8F57Yd+jO6iNga8nnbwhbATKGXIZOJJSugXGAMRyZsj/rqngwTJk5KmujbqouR1SLFsbo7Iuwze933EgefBbAE4JRI7V2aD9YgmB3socPqAi2Qf97E=</SignatureValue>
+      <KeyInfo>
+      <X509Data>
+        <X509Certificate>
+          MIICajCCAdOgAwIBAgIBADANBgkqhkiG9w0BAQQFADBSMQswCQYDVQQGEwJ1czETMBEGA1UECAwKQ2FsaWZvcm5pYTEVMBMGA1UECgwMT25lbG9naW4gSW5jMRcwFQYDVQQDDA5zcC5leGFtcGxlLmNvbTAeFw0xNDA3MTcwMDI5MjdaFw0xNTA3MTcwMDI5MjdaMFIxCzAJBgNVBAYTAnVzMRMwEQYDVQQIDApDYWxpZm9ybmlhMRUwEwYDVQQKDAxPbmVsb2dpbiBJbmMxFzAVBgNVBAMMDnNwLmV4YW1wbGUuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7vU/6R/OBA6BKsZH4L2bIQ2cqBO7/aMfPjUPJPSn59d/f0aRqSC58YYrPuQODydUABiCknOn9yV0fEYm4bNvfjroTEd8bDlqo5oAXAUAI8XHPppJNz7pxbhZW0u35q45PJzGM9nCv9bglDQYJLby1ZUdHsSiDIpMbGgf/ZrxqawIDAQABo1AwTjAdBgNVHQ4EFgQU3s2NEpYx7wH6bq7xJFKa46jBDf4wHwYDVR0jBBgwFoAU3s2NEpYx7wH6bq7xJFKa46jBDf4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQQFAAOBgQCPsNO2FG+zmk5miXEswAs30E14rBJpe/64FBpM1rPzOleexvMgZlr0/smF3P5TWb7H8Fy5kEiByxMjaQmml/nQx6qgVVzdhaTANpIE1ywEzVJlhdvw4hmRuEKYqTaFMLez0sRL79LUeDxPWw7Mj9FkpRYT+kAGiFomHop1nErV6Q==</X509Certificate>
+        </X509Data>
+    </KeyInfo>
+    <Object>
+      Any text, intermingled with:
+      <!--any element-->
+    </Object>
+  </Signature>
+  <samlp:Extensions >
+    <!--any element-->
+  </samlp:Extensions>
+  <saml:Subject   xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">    
+    <saml:NameID/>
+    <saml:SubjectConfirmation Method="http://www.example.com/">
+      <saml:BaseID/>
+      <saml:SubjectConfirmationData>
+        Any text, intermingled with:
+        <!--any element-->
+      </saml:SubjectConfirmationData>
+    </saml:SubjectConfirmation>
+  </saml:Subject>
+  <samlp:NameIDPolicy/>
+  <saml:Conditions   xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+    <saml:Condition/>
+    <AudienceRestriction>
+      <Audience>https://my.la.gov.localhost</Audience>
+    </AudienceRestriction>
+  </saml:Conditions>
+  <samlp:RequestedAuthnContext>
+    <saml:AuthnContextClassRef   xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">>http://www.example.com/</saml:AuthnContextClassRef>
+  </samlp:RequestedAuthnContext>
+  <samlp:Scoping>
+    <samlp:IDPList>
+      <samlp:IDPEntry ProviderID="http://www.example.com/" Name="string"/>
+      <samlp:GetComplete>http://www.example.com/</samlp:GetComplete>
+    </samlp:IDPList>
+    <samlp:RequesterID>http://www.example.com/</samlp:RequesterID>
+  </samlp:Scoping>
+</samlp:AuthnRequest>

@@ -1,0 +1,56 @@
+﻿<samlp:Response ID="_e27f54f9-6e90-4fff-bac0-68a285e4d1f4" Version="2.0" 
+                IssueInstant="2018-11-05T15:23:05.276Z" Destination="https://localhost:5008/saml2-signin" 
+                Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified" 
+                InResponseTo="id3d0eb331765a49c683c3107f2ded79f2" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
+  <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">http://S-DEVDC12.otsdev.la.gov/adfs/services/trust</Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
+  </samlp:Status>
+  <Assertion ID="_460eb0fb-1f38-47f8-a925-474abbd4ca79" IssueInstant="2018-11-05T15:23:05.276Z" Version="2.0" xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+    <Issuer>http://S-DEVDC12.otsdev.la.gov/adfs/services/trust</Issuer>
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+      <ds:SignedInfo>
+        <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+        <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+        <ds:Reference URI="#_460eb0fb-1f38-47f8-a925-474abbd4ca79">
+          <ds:Transforms>
+            <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+            <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+          </ds:Transforms>
+          <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+          <ds:DigestValue>6rcU07qGW53ruWEB84sJCxVSfbVzH5H4tRDCSs317lQ=</ds:DigestValue>
+        </ds:Reference>
+      </ds:SignedInfo>
+      <ds:SignatureValue>jLcQA2r4wEFeafQRAaymfaJczsuydLD64kzL2htoy7cUW1/7PFfZ2vvBp94AgEdI25teotcBIKtprP/t0ZtvgvIH58WBO1bRt8r9jN16UQQeG40XkzwEIfpCDQDolsVIA7vJRXQ3fSHz+PBk18/z4khGCk5yviyaJVownCJhlsU0WoeLjwj6H+uL5rl+sN7czXPVjti+SDoStGDR3Ra/8SA0QGXQ9fBqSZihJQ2EypEvZ9b3T5ucOAR6GcrxsyhZtkDMTnphQT5XUoC+TvmZLoednKrqEINzVU4YXRAcb4BgmlZWVKTz+UkDqbYx5XCFHZuOjfe8ObcCulkfem1irQ==</ds:SignatureValue>
+      <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIC6jCCAdKgAwIBAgIQWZsswXPjGa1O3HOOyCKRwDANBgkqhkiG9w0BAQsFADAxMS8wLQYDVQQDEyZBREZTIFNpZ25pbmcgLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDRaFw0xOTAyMjgxNzEwNDRaMDExLzAtBgNVBAMTJkFERlMgU2lnbmluZyAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApxL2/WsGOo2lo9NiIR+o7GALBgBh6H7MVZ71lCgzEczqn/ByCIjEUMw7WMirxFyBYxfeXF3lXGfmmK/W+VGjB8YnVv16lNKKE67rpmM7cJe2TYZTJD260SYEwpb/MfUUINEoRewFGjf9TL4SvLfxV5Sa+pdfD+gKsajUsKAkEXig/hshifWf4eIZ8tEeS4cnuUDfIxd2vElFxqoDR6hsmJHP8NMNDCDAh5geiLYa73wHwkTFxfPb9Cq9Pnhk0ffrh46ILnnBRUgrgBHuaZ0fI4iJHE2+5GgXh+VhvBn6Krb2D77JYRiBE8WsbVnzAeU2ZvcwNlA0q1dGOVunyYJuLwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBMtRFbbZ/Io5Nx150jHHw5QKQxPtPWxvcwJqvYRaMVxYA8CTvUgcBjYqVE3dJyAI3vwu/a8rl4IH9ZpkORXm71gtErvuFaV9dzbpGse84w9R+3vGS9HhO6SqOBqlpaSo7t6886id3qnfoeTTPwGV7m8+6tNk8jiky7ruRSsQ8t3ngPKVtNcvr8zd8NWk2i2eNw5Y8j5Wucfo+D+KObszF5gSrqK39jOsFpSf16dSzmP0exSeeme0bwOrE/8s/1ZKQqDrNnZ7nSrhOf+GV9gzreHEExYZAbo/2kQeRBBakDaRgeZksdR5njiVarNsFSRehkEULR1n2DbUNJvWLuG6Bq</ds:X509Certificate>
+        </ds:X509Data>
+      </KeyInfo>
+    </ds:Signature>
+    <Subject>
+      <NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">dina.heidar@otsdev.la.gov</NameID>
+      <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <SubjectConfirmationData InResponseTo="id3d0eb331765a49c683c3107f2ded79f2" NotOnOrAfter="2018-11-05T15:28:05.276Z" Recipient="https://localhost:5008/saml2-signin"/>
+      </SubjectConfirmation>
+    </Subject>
+    <Conditions NotBefore="2018-11-05T15:23:05.274Z" NotOnOrAfter="2018-11-05T16:23:05.274Z">
+      <AudienceRestriction>
+        <Audience>https://localhost:5008/</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AttributeStatement>
+      <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress">
+        <AttributeValue>dina.heidar@otsdev.la.gov</AttributeValue>
+      </Attribute>
+      <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name">
+        <AttributeValue>Dina Heidar (admin)</AttributeValue>
+      </Attribute>
+    </AttributeStatement>
+    <AuthnStatement AuthnInstant="2018-11-05T15:23:05.204Z" SessionIndex="_460eb0fb-1f38-47f8-a925-474abbd4ca79">
+      <AuthnContext>
+        <AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+</samlp:Response>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" targetNamespace="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:mstns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:app2="http://www.w3.org/2000/09/xmldsig#">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="SamlRequestSample_app2.xsd" />
+  <xs:import namespace="urn:oasis:names:tc:SAML:2.0:assertion" schemaLocation="SamlRequestSample_app1.xsd" />
+  <xs:element name="AuthnRequest" msdata:Prefix="samlp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Extensions" msdata:Prefix="samlp" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="NameIDPolicy" msdata:Prefix="samlp" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+        <xs:element ref="app1:Issuer" />
+        <xs:element ref="app2:Signature" />
+        <xs:element ref="app1:Subject" />
+        <xs:element ref="app1:Conditions" />
+        <xs:element name="RequestedAuthnContext" msdata:Prefix="samlp" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="app1:AuthnContextClassRef" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Scoping" msdata:Prefix="samlp" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RequesterID" msdata:Prefix="samlp" type="xs:string" minOccurs="0" />
+              <xs:element name="IDPList" msdata:Prefix="samlp" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="GetComplete" msdata:Prefix="samlp" type="xs:string" minOccurs="0" />
+                    <xs:element name="IDPEntry" msdata:Prefix="samlp" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="ProviderID" form="unqualified" type="xs:string" />
+                        <xs:attribute name="Name" form="unqualified" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ID" form="unqualified" type="xs:string" />
+      <xs:attribute name="Version" form="unqualified" type="xs:string" />
+      <xs:attribute name="Consent" form="unqualified" type="xs:string" />
+      <xs:attribute name="IssueInstant" form="unqualified" type="xs:string" />
+      <xs:attribute name="Destination" form="unqualified" type="xs:string" />
+      <xs:attribute name="ForceAuthn" form="unqualified" type="xs:string" />
+      <xs:attribute name="IsPassive" form="unqualified" type="xs:string" />
+      <xs:attribute name="ProtocolBinding" form="unqualified" type="xs:string" />
+      <xs:attribute name="AssertionConsumerServiceURL" form="unqualified" type="xs:string" />
+      <xs:attribute name="AssertionConsumerServiceIndex" form="unqualified" type="xs:string" />
+      <xs:attribute name="AttributeConsumingServiceIndex" form="unqualified" type="xs:string" />
+      <xs:attribute name="ProviderName" form="unqualified" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:Prefix="samlp">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="AuthnRequest" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

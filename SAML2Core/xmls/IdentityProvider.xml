@@ -1,0 +1,1486 @@
+﻿<?xml version="1.0"?>
+
+-<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://S-DEVDC12.otsdev.la.gov/adfs/services/trust" ID="_1ff4e20c-ce5e-4085-a2d3-bc9e656019eb">
+
+
+  -<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+
+
+    -<ds:SignedInfo>
+
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+
+
+      -<ds:Reference URI="#_1ff4e20c-ce5e-4085-a2d3-bc9e656019eb">
+
+
+        -<ds:Transforms>
+
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+
+          <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+
+        </ds:Transforms>
+
+        <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+
+        <ds:DigestValue>HXTLXWRb6dAK4idXP9S6Ki1NZbP3rTlCGR6vnZiDQio=</ds:DigestValue>
+
+      </ds:Reference>
+
+    </ds:SignedInfo>
+
+    <ds:SignatureValue>WtddPuRE6EWTqXXJaHLwLII3+A2uEKGDTk4+z8nRUO9DYoiMfPVWCYcuQbDgec/sD+/tVuQZlqO7ZIjDuxp/Ntn0sLUtXSKjmYl9wxCy7hPQbKZ7ar/fLb0HWu9Q86AK/2uSzh0CsDP/ZiKaCJqmZyfqiKMdnwW85jF2Mkl+BvSqRqf6dY9cv4KeSWZYOMB03eV+8Yw/OUAl8r1mPZ5I/LOH1rgVJA96XnRLw6SsoYiwm+GNgEX1qVBBkHU/zYAaN+sl4RyhkEO2PcQr5cO7A2/nt40tmF+WCA6ZAseLOfRfyVBo63BPT4xd27Sbx6UGXrrcpEnAwbzqoi/tDJa5+Q==</ds:SignatureValue>
+
+
+    -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+      -<X509Data>
+
+        <X509Certificate>MIIC6jCCAdKgAwIBAgIQWZsswXPjGa1O3HOOyCKRwDANBgkqhkiG9w0BAQsFADAxMS8wLQYDVQQDEyZBREZTIFNpZ25pbmcgLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDRaFw0xOTAyMjgxNzEwNDRaMDExLzAtBgNVBAMTJkFERlMgU2lnbmluZyAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApxL2/WsGOo2lo9NiIR+o7GALBgBh6H7MVZ71lCgzEczqn/ByCIjEUMw7WMirxFyBYxfeXF3lXGfmmK/W+VGjB8YnVv16lNKKE67rpmM7cJe2TYZTJD260SYEwpb/MfUUINEoRewFGjf9TL4SvLfxV5Sa+pdfD+gKsajUsKAkEXig/hshifWf4eIZ8tEeS4cnuUDfIxd2vElFxqoDR6hsmJHP8NMNDCDAh5geiLYa73wHwkTFxfPb9Cq9Pnhk0ffrh46ILnnBRUgrgBHuaZ0fI4iJHE2+5GgXh+VhvBn6Krb2D77JYRiBE8WsbVnzAeU2ZvcwNlA0q1dGOVunyYJuLwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBMtRFbbZ/Io5Nx150jHHw5QKQxPtPWxvcwJqvYRaMVxYA8CTvUgcBjYqVE3dJyAI3vwu/a8rl4IH9ZpkORXm71gtErvuFaV9dzbpGse84w9R+3vGS9HhO6SqOBqlpaSo7t6886id3qnfoeTTPwGV7m8+6tNk8jiky7ruRSsQ8t3ngPKVtNcvr8zd8NWk2i2eNw5Y8j5Wucfo+D+KObszF5gSrqK39jOsFpSf16dSzmP0exSeeme0bwOrE/8s/1ZKQqDrNnZ7nSrhOf+GV9gzreHEExYZAbo/2kQeRBBakDaRgeZksdR5njiVarNsFSRehkEULR1n2DbUNJvWLuG6Bq</X509Certificate>
+
+      </X509Data>
+
+    </KeyInfo>
+
+  </ds:Signature>
+
+
+  -<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ServiceDisplayName="OTS State Government" protocolSupportEnumeration="http://docs.oasis-open.org/ws-sx/ws-trust/200512 http://schemas.xmlsoap.org/ws/2005/02/trust http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:ApplicationServiceType">
+
+
+    -<KeyDescriptor use="encryption">
+
+
+      -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+        -<X509Data>
+
+          <X509Certificate>MIIC8DCCAdigAwIBAgIQOd+GBZsLcJ1CraSirLXYdzANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylBREZTIEVuY3J5cHRpb24gLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDNaFw0xOTAyMjgxNzEwNDNaMDQxMjAwBgNVBAMTKUFERlMgRW5jcnlwdGlvbiAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh1+1zR2a16rJox2Gb/x5x+pk5Mpup/CER1FijR+cp+bHR9rf843n4xPRK/RqYyMYmVl9UpEtJC5b6XYFfhKp56e7ptSUTzEjzRjGzuFrkafx+oBucqy6yhBQ+8gRNhdo8H8YGX9iPw7boWcHxmYljg2hHNcA4EOP+fU5bfHnM8XMsYlJ2iHp1+1ul6tbyYw84q8ePonravGPYZ/IF5Q0bnY1gIdJy2yOrnmb1oUHkOMFVKO6xnfMJPYsITE+JfOaEB3hR2daX83n6ep1G7Is/w+hhUui7VkRcroXeFwrFoayQQCLZS3J6PmO+xXDft+YTRFDwQmlJ0kdEZ33lvrRYQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQB0nh7SdzI2UVlgSc6rQLdYEEznKLbrTlCHCAv6ywbb8/95+4Fw+c51CDchZFjh4Nf4elLOyT6rdnw3WgGsGbN0haYZdZ9m1aH3RzgO1o9WnTy3fdmZ1TsKVheIhF75HE3eE1/LVD0CF4WvxC311yw2x7g52fYj4DutiFzBvBUx9YdrPX/kbrWrddJuu/gywmAX1tArehlQWZ0ZFHKEgqLh577++nvkJLpTm58Ob4faoztMb1Wn6RcElov/Tj/+TdTwsfQmv0Wv4OJZCW/KdZjCi7SNRwSd+uZTVeuX54+vu+LVZKv3coZJxXrDeGMFs1zpvyoJYo0w87Moa4o9MjVM</X509Certificate>
+
+        </X509Data>
+
+      </KeyInfo>
+
+    </KeyDescriptor>
+
+
+    +<fed:ClaimTypesRequested>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      -<fed:TargetScopes>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/2005/issuedtokenmixedasymmetricbasic256</Address>
+
+        </EndpointReference>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/2005/issuedtokenmixedsymmetricbasic256</Address>
+
+        </EndpointReference>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/13/issuedtokenmixedasymmetricbasic256</Address>
+
+        </EndpointReference>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/13/issuedtokenmixedsymmetricbasic256</Address>
+
+        </EndpointReference>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/ls/</Address>
+
+        </EndpointReference>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>http://s-devdc12.otsdev.la.gov/adfs/services/trust</Address>
+
+        </EndpointReference>
+
+      </fed:TargetScopes>
+
+
+      -<fed:ApplicationServiceEndpoint>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/2005/issuedtokenmixedasymmetricbasic256</Address>
+
+        </EndpointReference>
+
+      </fed:ApplicationServiceEndpoint>
+
+
+      -<fed:PassiveRequestorEndpoint>
+
+
+        -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+          <Address>https://s-devdc12.otsdev.la.gov/adfs/ls/</Address>
+
+        </EndpointReference>
+
+      </fed:PassiveRequestorEndpoint>
+
+    </RoleDescriptor>
+
+
+  -<RoleDescriptor xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ServiceDisplayName="OTS State Government" protocolSupportEnumeration="http://docs.oasis-open.org/ws-sx/ws-trust/200512 http://schemas.xmlsoap.org/ws/2005/02/trust http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:SecurityTokenServiceType">
+
+
+    +<KeyDescriptor use="signing">
+
+
+
+
+
+
+
+
+
+
+
+
+
+      -<fed:TokenTypesOffered>
+
+        <fed:TokenType Uri="urn:oasis:names:tc:SAML:2.0:assertion"/>
+
+        <fed:TokenType Uri="urn:oasis:names:tc:SAML:1.0:assertion"/>
+
+      </fed:TokenTypesOffered>
+
+
+      +<fed:ClaimTypesOffered>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        -<fed:SecurityTokenServiceEndpoint>
+
+
+          -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+            <Address>https://s-devdc12.otsdev.la.gov/adfs/services/trust/2005/certificatemixed</Address>
+
+
+            -<Metadata>
+
+
+              -<Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+                -<wsx:MetadataSection xmlns="" Dialect="http://schemas.xmlsoap.org/ws/2004/09/mex">
+
+
+                  -<wsx:MetadataReference>
+
+                    <Address xmlns="http://www.w3.org/2005/08/addressing">https://s-devdc12.otsdev.la.gov/adfs/services/trust/mex</Address>
+
+                  </wsx:MetadataReference>
+
+                </wsx:MetadataSection>
+
+              </Metadata>
+
+            </Metadata>
+
+          </EndpointReference>
+
+        </fed:SecurityTokenServiceEndpoint>
+
+
+        -<fed:PassiveRequestorEndpoint>
+
+
+          -<EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+
+            <Address>https://s-devdc12.otsdev.la.gov/adfs/ls/</Address>
+
+          </EndpointReference>
+
+        </fed:PassiveRequestorEndpoint>
+
+      </RoleDescriptor>
+
+
+  -<SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true">
+
+
+    -<KeyDescriptor use="encryption">
+
+
+      -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+        -<X509Data>
+
+          <X509Certificate>MIIC8DCCAdigAwIBAgIQOd+GBZsLcJ1CraSirLXYdzANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylBREZTIEVuY3J5cHRpb24gLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDNaFw0xOTAyMjgxNzEwNDNaMDQxMjAwBgNVBAMTKUFERlMgRW5jcnlwdGlvbiAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh1+1zR2a16rJox2Gb/x5x+pk5Mpup/CER1FijR+cp+bHR9rf843n4xPRK/RqYyMYmVl9UpEtJC5b6XYFfhKp56e7ptSUTzEjzRjGzuFrkafx+oBucqy6yhBQ+8gRNhdo8H8YGX9iPw7boWcHxmYljg2hHNcA4EOP+fU5bfHnM8XMsYlJ2iHp1+1ul6tbyYw84q8ePonravGPYZ/IF5Q0bnY1gIdJy2yOrnmb1oUHkOMFVKO6xnfMJPYsITE+JfOaEB3hR2daX83n6ep1G7Is/w+hhUui7VkRcroXeFwrFoayQQCLZS3J6PmO+xXDft+YTRFDwQmlJ0kdEZ33lvrRYQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQB0nh7SdzI2UVlgSc6rQLdYEEznKLbrTlCHCAv6ywbb8/95+4Fw+c51CDchZFjh4Nf4elLOyT6rdnw3WgGsGbN0haYZdZ9m1aH3RzgO1o9WnTy3fdmZ1TsKVheIhF75HE3eE1/LVD0CF4WvxC311yw2x7g52fYj4DutiFzBvBUx9YdrPX/kbrWrddJuu/gywmAX1tArehlQWZ0ZFHKEgqLh577++nvkJLpTm58Ob4faoztMb1Wn6RcElov/Tj/+TdTwsfQmv0Wv4OJZCW/KdZjCi7SNRwSd+uZTVeuX54+vu+LVZKv3coZJxXrDeGMFs1zpvyoJYo0w87Moa4o9MjVM</X509Certificate>
+
+        </X509Data>
+
+      </KeyInfo>
+
+    </KeyDescriptor>
+
+
+    -<KeyDescriptor use="signing">
+
+
+      -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+        -<X509Data>
+
+          <X509Certificate>MIIC6jCCAdKgAwIBAgIQWZsswXPjGa1O3HOOyCKRwDANBgkqhkiG9w0BAQsFADAxMS8wLQYDVQQDEyZBREZTIFNpZ25pbmcgLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDRaFw0xOTAyMjgxNzEwNDRaMDExLzAtBgNVBAMTJkFERlMgU2lnbmluZyAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApxL2/WsGOo2lo9NiIR+o7GALBgBh6H7MVZ71lCgzEczqn/ByCIjEUMw7WMirxFyBYxfeXF3lXGfmmK/W+VGjB8YnVv16lNKKE67rpmM7cJe2TYZTJD260SYEwpb/MfUUINEoRewFGjf9TL4SvLfxV5Sa+pdfD+gKsajUsKAkEXig/hshifWf4eIZ8tEeS4cnuUDfIxd2vElFxqoDR6hsmJHP8NMNDCDAh5geiLYa73wHwkTFxfPb9Cq9Pnhk0ffrh46ILnnBRUgrgBHuaZ0fI4iJHE2+5GgXh+VhvBn6Krb2D77JYRiBE8WsbVnzAeU2ZvcwNlA0q1dGOVunyYJuLwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBMtRFbbZ/Io5Nx150jHHw5QKQxPtPWxvcwJqvYRaMVxYA8CTvUgcBjYqVE3dJyAI3vwu/a8rl4IH9ZpkORXm71gtErvuFaV9dzbpGse84w9R+3vGS9HhO6SqOBqlpaSo7t6886id3qnfoeTTPwGV7m8+6tNk8jiky7ruRSsQ8t3ngPKVtNcvr8zd8NWk2i2eNw5Y8j5Wucfo+D+KObszF5gSrqK39jOsFpSf16dSzmP0exSeeme0bwOrE/8s/1ZKQqDrNnZ7nSrhOf+GV9gzreHEExYZAbo/2kQeRBBakDaRgeZksdR5njiVarNsFSRehkEULR1n2DbUNJvWLuG6Bq</X509Certificate>
+
+        </X509Data>
+
+      </KeyInfo>
+
+    </KeyDescriptor>
+
+    <SingleLogoutService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/>
+
+    <SingleLogoutService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+    <AssertionConsumerService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" isDefault="true" index="0"/>
+
+    <AssertionConsumerService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" index="1"/>
+
+    <AssertionConsumerService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" index="2"/>
+
+  </SPSSODescriptor>
+
+
+  -<IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+
+
+    -<KeyDescriptor use="encryption">
+
+
+      -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+        -<X509Data>
+
+          <X509Certificate>MIIC8DCCAdigAwIBAgIQOd+GBZsLcJ1CraSirLXYdzANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylBREZTIEVuY3J5cHRpb24gLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDNaFw0xOTAyMjgxNzEwNDNaMDQxMjAwBgNVBAMTKUFERlMgRW5jcnlwdGlvbiAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh1+1zR2a16rJox2Gb/x5x+pk5Mpup/CER1FijR+cp+bHR9rf843n4xPRK/RqYyMYmVl9UpEtJC5b6XYFfhKp56e7ptSUTzEjzRjGzuFrkafx+oBucqy6yhBQ+8gRNhdo8H8YGX9iPw7boWcHxmYljg2hHNcA4EOP+fU5bfHnM8XMsYlJ2iHp1+1ul6tbyYw84q8ePonravGPYZ/IF5Q0bnY1gIdJy2yOrnmb1oUHkOMFVKO6xnfMJPYsITE+JfOaEB3hR2daX83n6ep1G7Is/w+hhUui7VkRcroXeFwrFoayQQCLZS3J6PmO+xXDft+YTRFDwQmlJ0kdEZ33lvrRYQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQB0nh7SdzI2UVlgSc6rQLdYEEznKLbrTlCHCAv6ywbb8/95+4Fw+c51CDchZFjh4Nf4elLOyT6rdnw3WgGsGbN0haYZdZ9m1aH3RzgO1o9WnTy3fdmZ1TsKVheIhF75HE3eE1/LVD0CF4WvxC311yw2x7g52fYj4DutiFzBvBUx9YdrPX/kbrWrddJuu/gywmAX1tArehlQWZ0ZFHKEgqLh577++nvkJLpTm58Ob4faoztMb1Wn6RcElov/Tj/+TdTwsfQmv0Wv4OJZCW/KdZjCi7SNRwSd+uZTVeuX54+vu+LVZKv3coZJxXrDeGMFs1zpvyoJYo0w87Moa4o9MjVM</X509Certificate>
+
+        </X509Data>
+
+      </KeyInfo>
+
+    </KeyDescriptor>
+
+
+    -<KeyDescriptor use="signing">
+
+
+      -<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+
+
+        -<X509Data>
+
+          <X509Certificate>MIIC6jCCAdKgAwIBAgIQWZsswXPjGa1O3HOOyCKRwDANBgkqhkiG9w0BAQsFADAxMS8wLQYDVQQDEyZBREZTIFNpZ25pbmcgLSBTLURFVkRDMTIub3RzZGV2LmxhLmdvdjAeFw0xODAyMjgxNzEwNDRaFw0xOTAyMjgxNzEwNDRaMDExLzAtBgNVBAMTJkFERlMgU2lnbmluZyAtIFMtREVWREMxMi5vdHNkZXYubGEuZ292MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApxL2/WsGOo2lo9NiIR+o7GALBgBh6H7MVZ71lCgzEczqn/ByCIjEUMw7WMirxFyBYxfeXF3lXGfmmK/W+VGjB8YnVv16lNKKE67rpmM7cJe2TYZTJD260SYEwpb/MfUUINEoRewFGjf9TL4SvLfxV5Sa+pdfD+gKsajUsKAkEXig/hshifWf4eIZ8tEeS4cnuUDfIxd2vElFxqoDR6hsmJHP8NMNDCDAh5geiLYa73wHwkTFxfPb9Cq9Pnhk0ffrh46ILnnBRUgrgBHuaZ0fI4iJHE2+5GgXh+VhvBn6Krb2D77JYRiBE8WsbVnzAeU2ZvcwNlA0q1dGOVunyYJuLwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBMtRFbbZ/Io5Nx150jHHw5QKQxPtPWxvcwJqvYRaMVxYA8CTvUgcBjYqVE3dJyAI3vwu/a8rl4IH9ZpkORXm71gtErvuFaV9dzbpGse84w9R+3vGS9HhO6SqOBqlpaSo7t6886id3qnfoeTTPwGV7m8+6tNk8jiky7ruRSsQ8t3ngPKVtNcvr8zd8NWk2i2eNw5Y8j5Wucfo+D+KObszF5gSrqK39jOsFpSf16dSzmP0exSeeme0bwOrE/8s/1ZKQqDrNnZ7nSrhOf+GV9gzreHEExYZAbo/2kQeRBBakDaRgeZksdR5njiVarNsFSRehkEULR1n2DbUNJvWLuG6Bq</X509Certificate>
+
+        </X509Data>
+
+      </KeyInfo>
+
+    </KeyDescriptor>
+
+    <SingleLogoutService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/>
+
+    <SingleLogoutService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+
+    <SingleSignOnService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"/>
+
+    <SingleSignOnService Location="https://s-devdc12.otsdev.la.gov/adfs/ls/" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="E-Mail Address" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Given Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="UPN" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Common Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/claims/CommonName"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="AD FS 1.x E-Mail Address" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/claims/EmailAddress"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Group" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/claims/Group"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="AD FS 1.x UPN" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/claims/UPN"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Role" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/role"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Surname" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="PPID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/privatepersonalidentifier"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Name ID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Authentication time stamp" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationinstant"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Authentication method" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/authenticationmethod"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Deny only group SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/denyonlysid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Deny only primary SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/denyonlyprimarysid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Deny only primary group SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/denyonlyprimarygroupsid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Group SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Primary group SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/primarygroupsid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Primary SID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Windows account name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Is Registered User" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/isregistereduser"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Device Identifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Device Registration Identifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/registrationid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Device Registration DisplayName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/displayname"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Device OS type" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/ostype"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Device OS Version" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/osversion"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Is Managed Device" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/devicecontext/claims/ismanaged"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Forwarded Client IP" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-forwarded-client-ip"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Client Application" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-client-application"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Client User Agent" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-client-user-agent"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Client IP" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-client-ip"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Endpoint Path" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-endpoint-absolute-path"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Proxy" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-proxy"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Application Identifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/relyingpartytrustid"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Application policies" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/applicationpolicy"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Authority Key Identifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/authoritykeyidentifier"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Basic Constraint" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/basicconstraints"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Enhanced Key Usage" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/eku"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Issuer" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/issuer"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Issuer Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/issuername"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Key Usage" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/keyusage"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Not After" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/notafter"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Not Before" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/notbefore"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Certificate Policies" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/certificatepolicy"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Public Key" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/rsa"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Certificate Raw Data" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/rawdata"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Subject Alternative Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/san"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Serial Number" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2008/06/identity/claims/serialnumber"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Signature Algorithm" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/signaturealgorithm"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Subject" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/subject"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Subject Key Identifier" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/subjectkeyidentifier"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Subject Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/subjectname"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="V2 Template Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/certificatetemplateinformation"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="V1 Template Name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/extension/certificatetemplatename"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Thumbprint" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/thumbprint"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="X.509 Version" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/12/certificatecontext/field/x509version"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Inside Corporate Network" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2012/01/insidecorporatenetwork"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Password Expiration Time" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2012/01/passwordexpirationtime"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Password Expiration Days" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2012/01/passwordexpirationdays"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Update Password URL" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2012/01/passwordchangeurl"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Authentication Methods References" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/claims/authnmethodsreferences"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Client Request ID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/2012/01/requestcontext/claims/client-request-id"/>
+
+    <Attribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion" FriendlyName="Alternate Login ID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri" Name="http://schemas.microsoft.com/ws/2013/11/alternateloginid"/>
+
+  </IDPSSODescriptor>
+
+  <ContactPerson contactType="support"/>
+
+</EntityDescriptor>

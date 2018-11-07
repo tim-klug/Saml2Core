@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema targetNamespace="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:mstns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:app2="http://www.w3.org/2000/09/xmldsig#">
+  <xs:import namespace="urn:oasis:names:tc:SAML:2.0:protocol" schemaLocation="SamlRequestSample.xsd" />
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="SamlRequestSample_app2.xsd" />
+  <xs:element name="Issuer" msdata:Prefix="saml" nillable="true">
+    <xs:complexType>
+      <xs:simpleContent msdata:Prefix="saml" msdata:ColumnName="Issuer_Text" msdata:Ordinal="4">
+        <xs:extension base="xs:string">
+          <xs:attribute name="NameQualifier" form="unqualified" type="xs:string" />
+          <xs:attribute name="SPNameQualifier" form="unqualified" type="xs:string" />
+          <xs:attribute name="Format" form="unqualified" type="xs:string" />
+          <xs:attribute name="SPProvidedID" form="unqualified" type="xs:string" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Subject" msdata:Prefix="saml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NameID" msdata:Prefix="saml" type="xs:string" minOccurs="0" />
+        <xs:element name="SubjectConfirmation" msdata:Prefix="saml" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BaseID" msdata:Prefix="saml" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+              <xs:element name="SubjectConfirmationData" msdata:Prefix="saml" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+            </xs:sequence>
+            <xs:attribute name="Method" form="unqualified" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Conditions" msdata:Prefix="saml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Condition" msdata:Prefix="saml" type="xs:string" minOccurs="0" />
+        <xs:element name="AudienceRestriction" form="unqualified">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Audience" form="unqualified" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthnContextClassRef" msdata:Prefix="saml" type="xs:string" />
+</xs:schema>

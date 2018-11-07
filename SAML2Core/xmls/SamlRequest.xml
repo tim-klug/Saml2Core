@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<q1:AuthnRequest ID="bc03ee71716ecf8478230833947317af9d02e5d8e9641aaf254e0151de05a77a" 
+                 Version="2.0" 
+                 IssueInstant="2018-06-29T15:07:09.9095898Z" 
+                 Destination="https://s-devdc12.otsdev.la.gov/adfs/ls/" 
+                 ForceAuthn="false" 
+                 IsPassive="false" 
+                 ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
+                 AssertionConsumerServiceURL="https://localhost:44344/Saml2/AssertionConsumerService" 
+                 xmlns:q1="urn:oasis:names:tc:SAML:2.0:protocol">
+  <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://my.la.gov.localhost</Issuer>
+  <Conditions xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+    <AudienceRestriction>
+      <Audience>https://my.la.gov.localhost</Audience>
+    </AudienceRestriction>
+  </Conditions>
+</q1:AuthnRequest>
