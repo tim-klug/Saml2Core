@@ -2,16 +2,16 @@
 
 1. Setup APPDM nuget server as a package source in Visual Studio
 
-![alt text](gear.png)
-![alt text](appdm_nuget.png)
+![gear](/screenshots/gear.png)
+![nuget](/screenshots/appdm_nuget.png)
    
 2. Change package source to APPDM
 
-![alt text](change_package_source.png)
+![package source](/screenshots/change_package_source.png)
     
 3. Find SAML2Core package and install
 
-![alt text](install.png)
+![install](/screenshots/install.png)
 
 # Usage
 1. Modify `ConfigureServices()` in Startup.cs
