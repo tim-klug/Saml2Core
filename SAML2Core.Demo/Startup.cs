@@ -47,19 +47,21 @@ namespace Saml2Authentication
                    
               //optional
               //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
-              //options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
+              options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
+              options.CreateMetadataFile = true;
               options.ForceAuthn = true;
-              options.ServiceProvider.ServiceName = "One Citizen Login";
+              options.ServiceProvider.ServiceName = "My Test Site";
               options.ServiceProvider.Language = "en-US";
               options.ServiceProvider.OrganizationDisplayName = "Louisiana State Government";
               options.ServiceProvider.OrganizationName = "Louisiana State Government";
-              options.ServiceProvider.OrganizationURL = "https://my.la.gov";
+              options.ServiceProvider.OrganizationURL = "https://my.test.site.gov";
               options.ServiceProvider.ContactPerson = new ContactType()
               {
-                  Company = "OTS",
+                  Company = "Louisiana State Government - OTS",
                   GivenName = "Dina Heidar",
                   EmailAddress = new[] { "dina.heidar@la.gov" },
-                  contactType = ContactTypeType.technical
+                  contactType = ContactTypeType.technical,
+                  TelephoneNumber = new[] { "+1 234 5678" }
               };
               options.CreateMetadataFile = true; //if true, it'll create an SP metadata file which can be located at 'https://[your host]/metadata.xml'
               

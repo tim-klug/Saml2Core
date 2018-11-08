@@ -173,6 +173,17 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 }
             }
 
+            //delete the metadata.xml if exists
+            string[] xmlList = Directory.GetFiles(options.DefaultMetadataFolderLocation, "*.xml");
+            foreach (string f in xmlList)
+            {
+                if (f == options.DefaultMetadataFolderLocation + "\\" + options.DefaultMetadataFileName + ".xml")
+                {
+                    File.Delete(f);
+                }
+            }
+
+            //overwrite or create metadata.xml if set to true
             if (options.CreateMetadataFile)
             {
                 Metadata.KeyDescriptorType[] KeyDescriptor = null;
@@ -354,7 +365,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 xmlDoc.LoadXml(xmlTemplate);
                 xmlDoc.PreserveWhitespace = true;
                 xmlDoc.Save(options.DefaultMetadataFolderLocation + "\\" + options.DefaultMetadataFileName + ".xml");
-            }
+            }           
         }
     }
 }

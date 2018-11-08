@@ -7,10 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SAML2Core\SAML2Core.csproj" />
+    <PackageReference Include="SAML2Core" Version="1.0.5" />
   </ItemGroup>
 
 </Project>
