@@ -10,4 +10,8 @@
     <PackageReference Include="SAML2Core" Version="1.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SAML2Core\SAML2Core.csproj" />
+  </ItemGroup>
+
 </Project>

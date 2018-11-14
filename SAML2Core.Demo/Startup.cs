@@ -42,8 +42,8 @@ namespace Saml2Authentication
               //required
               options.SignOutPath = "/signedout"; //setting up the assertion consumer url on idp side              
               options.ServiceProvider.EntityId = Configuration["AppConfiguration:ServiceProvider:EntityId"]; // relying party identifier eg https://my.la.gov.local
-              //options.MetadataAddress = @"FederationMetadata.xml"; //idp metadata file instead of a url address
-              options.MetadataAddress = Configuration["AppConfiguration:IdentityProvider:MetadataAddress"]; //idp metadata url address  
+              options.MetadataAddress =@"federation.iam.sit.ea.la.govMetadata.xml"; //idp metadata file instead of a url address
+              //options.MetadataAddress = Configuration["AppConfiguration:IdentityProvider:MetadataAddress"]; //idp metadata url address  
                    
               //optional
               //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes

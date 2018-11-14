@@ -117,7 +117,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 }
             };
 
-            string singleLogoutUrl = options.Configuration.SingleLogoutServices.FirstOrDefault().Location;
+            string singleSignOnUrl = options.Configuration.SingleSignOnServices.FirstOrDefault().Location;
 
             //serialize AuthnRequest to xml string  
             string xmlTemplate = string.Empty;
@@ -149,7 +149,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
                 AddSignature(result, spPrivateKey, hashingAlgorithm, options.ServiceProvider.HashAlgorithm);
             }
-            return $"{singleLogoutUrl}?{result}";
+            return $"{singleSignOnUrl}?{result}";
         }
 
         /// <summary>
