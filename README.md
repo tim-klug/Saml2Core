@@ -46,7 +46,7 @@ services.AddAuthentication(sharedOptions =>
     //options.DefaultMetadataFolderLocation = "MyPath";
 
     //************************************************************************************************************ 
-    // The following section is if you application (SP) has a certificate and is signing the Authn Request with it.
+    // The following section is if your application (SP) has a certificate and is signing the Authn Request with it.
     //************************************************************************************************************
     // Certificate (REQUIRED) if you want you application (SP) to sign the authentication request (AuthnRequest)
     // The certificate serial number value. 
