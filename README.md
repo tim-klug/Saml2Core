@@ -52,7 +52,7 @@ services.AddAuthentication(sharedOptions =>
     // The certificate serial number value. 
     options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
 
-    // Option 3 - For signed AuthnRequest- if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
+    // For signed AuthnRequest - if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
     //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
     
     //************************************************************
