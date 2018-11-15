@@ -120,9 +120,54 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             while (reader.IsStartElement())
             {
-                if (IsSecurityTokenServiceTypeRoleDescriptor(reader))
+                if (IsIDPSSODescriptor(reader))
                 {
-                    var roleDescriptor = ReadSecurityTokenServiceTypeRoleDescriptor(reader);
+                    var endpoints = new Saml2Endpoints();
+                    var roleDescriptor = new Saml2SecurityTokenServiceTypeRoleDescriptor();
+                    reader.ReadStartElement();
+
+                    while (reader.IsStartElement())
+                    {
+                        if (reader.IsStartElement(Elements.KeyDescriptor, Namespaces.MetadataNamespace) && reader.GetAttribute(Attributes.Use) == Saml2Constants.KeyUse.Signing)
+                        {
+                            roleDescriptor.KeyInfos.Add(ReadKeyDescriptorForSigning(reader));
+                        }
+                        else if (reader.IsStartElement(Elements.PassiveRequestorEndpoint, Namespaces.FedNamespace))
+                        {
+                            roleDescriptor.TokenEndpoint = ReadPassiveRequestorEndpoint(reader);
+                        }
+                        else if (reader.IsStartElement(Elements.SingleLogoutService, Namespaces.MetadataNamespace))
+                        {
+                            var location = new LocationWithBinding()
+                            {
+                                Location = reader.GetAttribute(Attributes.Location),
+                                Binding = reader.GetAttribute(Attributes.Binding)
+                            };
+                            endpoints.SingleLogoutServices.Add(location);
+                            reader.ReadOuterXml();
+                        }
+                        // <NameIDFormat >
+                        else if (reader.IsStartElement(Elements.NameIDFormat, Namespaces.MetadataNamespace))
+                        {
+                            string nameID = reader.ReadElementContentAsString();
+                            endpoints.NameIDFormats.Add(nameID);
+                        }
+                        // <SingleSignOnService>
+                        else if (reader.IsStartElement(Elements.SingleSignOnService, Namespaces.MetadataNamespace))
+                        {
+                            var location = new LocationWithBinding()
+                            {
+                                Location = reader.GetAttribute(Attributes.Location),
+                                Binding = reader.GetAttribute(Attributes.Binding)
+                            };
+                            endpoints.SingleSignOnServices.Add(location);
+                            reader.ReadOuterXml();
+                        }
+                        else
+                        {
+                            reader.ReadOuterXml();
+                        }
+                    }
 
                     foreach (var keyInfo in roleDescriptor.KeyInfos)
                     {
@@ -140,11 +185,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                             }
                         }
                     }
-                    configuration.TokenEndpoint = roleDescriptor.TokenEndpoint;                   
-                }
-                else if (IsIDPSSODescriptor(reader))
-                {
-                    var endpoints = ReadEndpoints(reader);
+                    configuration.TokenEndpoint = roleDescriptor.TokenEndpoint;
                     configuration.SingleSignOnServices = endpoints.SingleSignOnServices;
                     configuration.SingleLogoutServices = endpoints.SingleLogoutServices;
                     configuration.NameIdFormat = endpoints.NameIDFormats;
@@ -181,7 +222,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             if (reader.IsStartElement(XmlSignatureConstants.Elements.KeyInfo, XmlSignatureConstants.Namespace) && use == Saml2Constants.KeyUse.Signing)
             {
-                var keyInfo = _dsigSerializer.ReadKeyInfo(reader);               
+                var keyInfo = _dsigSerializer.ReadKeyInfo(reader);
                 // </KeyDescriptor>
                 reader.ReadEndElement();
                 return keyInfo;
@@ -192,24 +233,16 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
-        /// <summary>
-        /// Read RoleDescriptor element in xml.
-        /// </summary>
-        /// <param name="reader"><see cref="XmlReader" /> used to read security token service type role descriptor</param>
-        /// <returns>
-        ///   <see cref="Saml2SecurityTokenServiceTypeRoleDescriptor" />
-        /// </returns>
-        /// <exception cref="XmlReadException">if error occurs when reading role descriptor</exception>
         protected virtual Saml2SecurityTokenServiceTypeRoleDescriptor ReadSecurityTokenServiceTypeRoleDescriptor(XmlReader reader)
         {
-            XmlUtil.CheckReaderOnEntry(reader, Elements.RoleDescriptor, Namespaces.MetadataNamespace);
+            XmlUtil.CheckReaderOnEntry(reader, Elements.IdpssoDescriptor, Namespaces.MetadataNamespace);
 
-            if (!IsSecurityTokenServiceTypeRoleDescriptor(reader))
-                throw XmlUtil.LogReadException(LogMessages.IDX22804);
+            //if (!IsSecurityTokenServiceTypeRoleDescriptor(reader))
+            //    throw XmlUtil.LogReadException(LogMessages.IDX22804);
 
             var roleDescriptor = new Saml2SecurityTokenServiceTypeRoleDescriptor();
 
-            // <RoleDescriptor>
+            // <IdpssoDescriptor>
             bool isEmptyElement = reader.IsEmptyElement;
 
             reader.ReadStartElement();
@@ -229,7 +262,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     reader.ReadOuterXml();
                 }
             }
-            // </RoleDescriptor>
+            // </ IdpssoDescriptor >
             if (!isEmptyElement)
                 reader.ReadEndElement();
 

@@ -141,8 +141,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             if (options.ServiceProvider.X509Certificate2 != null)
             {
                 AsymmetricAlgorithm spPrivateKey = spCertificate.PrivateKey;
-                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
-
+                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;                
                 // Check if the key is of a supported type. [SAMLBind] sect. 3.4.4.1 specifies this.
                 if (!(spPrivateKey is RSA || spPrivateKey is DSA || spPrivateKey == null))
                     throw new ArgumentException("Signing key must be an instance of either RSA or DSA.");
