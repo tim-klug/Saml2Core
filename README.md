@@ -2,16 +2,16 @@
 
 1. Setup APPDM nuget server as a package source in Visual Studio
 
-![gear](/screenshots/gear.PNG)
-![nuget](/screenshots/appdm_nuget.PNG)
+![gear](screenshots/gear.PNG)
+![nuget](screenshots/appdm_nuget.PNG)
    
 2. Change package source to APPDM
 
-![package source](/screenshots/change_package_source.PNG)
+![package source](screenshots/change_package_source.PNG)
     
 3. Find SAML2Core package and install
 
-![install](/screenshots/install.PNG)
+![install](screenshots/install.PNG)
 
 # Usage
 1. Modify `ConfigureServices()` in Startup.cs
@@ -45,11 +45,19 @@ services.AddAuthentication(sharedOptions =>
     //options.DefaultMetadataFileName = "MyMetadataFilename.xml";
     //options.DefaultMetadataFolderLocation = "MyPath";
 
-    // Optional Properties
-    //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
-    //options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
+    //************************************************************************************************************ 
+    // The following section is if you application (SP) has a certificate and is signing the Authn Request with it.
+    //************************************************************************************************************
+    // Certificate (REQUIRED) if you want you application (SP) to sign the authentication request (AuthnRequest)
+    // The certificate serial number value. 
+    options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
 
-    // Force Authentication (optional) - Is authentication required?
+    // Option 3 - For signed AuthnRequest- if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
+    //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
+    
+    //************************************************************
+            
+    // Force Authentication (optional) - if you are requiring users to log into the Idp every time.
     options.ForceAuthn = true;
 
     // Service Provider Properties (optional) - These set the appropriate tags in the metadata.xml file

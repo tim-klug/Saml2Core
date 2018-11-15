@@ -58,7 +58,10 @@ namespace SamlCore.AspNetCore.Authentication.Saml2.Tests
                         sharedOptions.DefaultChallengeScheme = Saml2Defaults.AuthenticationScheme;
                     })
                     .AddCookie()
-                    .AddSamlCore();
+                    .AddSamlCore(options =>
+                    {
+                        options.DefaultMetadataFolderLocation = "/";
+                    });
                 });
             var server = new TestServer(builder);
             var httpClient = server.CreateClient();

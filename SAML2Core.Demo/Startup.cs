@@ -60,10 +60,12 @@ namespace Saml2Authentication
                 //options.DefaultMetadataFileName = "MyMetadataFilename.xml";
                 //options.DefaultMetadataFolderLocation = "MyPath";
 
-                // Optional Properties
-                //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
-                //options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
+                // (REQUIRED IF) signing AuthnRequest with Sp certificate to Idp. The value here is the certifcate serial number.
+                options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
 
+                //optional if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
+                //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
+                
                 // Force Authentication (optional) - Is authentication required?
                 options.ForceAuthn = true;
 
