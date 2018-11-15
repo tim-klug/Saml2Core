@@ -42,8 +42,8 @@ services.AddAuthentication(sharedOptions =>
     options.CreateMetadataFile = true;
 
     // If you want to specify the filename and path for the generated metadata file do so below:
-    //options.DefaultMetadataFileName = "MyMetadataFilename.xml";
-    //options.DefaultMetadataFolderLocation = "MyPath";
+    //options.DefaultMetadataFileName = "MyMetadataFilename"; //the default is "Metadata".
+    //options.DefaultMetadataFolderLocation = "MyPath"; //the default is "wwwroot" so it can be accessible via https://[host name]/MyMetadataFilename.xml.
 
     //************************************************************************************************************ 
     // The following section is if your application (SP) has a certificate and is signing the Authn Request with it.
