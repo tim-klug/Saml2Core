@@ -128,7 +128,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
 
             string assertionHostUrl = new Uri(CurrentUri).Host;
-            string sendAssertionTo= string.Empty;
+            string sendAssertionTo = string.Empty;
             if (!string.IsNullOrEmpty(Options.AssertionURL_PRD))
             {
                 string assertionHostPrdUrl = new Uri(Options.AssertionURL_PRD).Host;
@@ -143,7 +143,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             {
                 string assertionHostStgUrl = new Uri(Options.AssertionURL_STG).Host;
                 sendAssertionTo = assertionHostUrl == assertionHostStgUrl ? Options.AssertionURL_STG : sendAssertionTo;
-            }            
+            }
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string authnRequestId = "id" + Guid.NewGuid().ToString("N");
@@ -259,6 +259,10 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 }
 
                 var tvp = Options.TokenValidationParameters.Clone();
+                var validator = Options.Saml2SecurityTokenHandler;
+                ClaimsPrincipal principal = null;
+                SecurityToken parsedToken = null;
+
                 var issuers = new[] { _configuration.Issuer };
                 tvp.ValidateIssuerSigningKey = Options.WantAssertionsSigned;
                 tvp.ValidateTokenReplay = !Options.IsPassive;
@@ -267,9 +271,10 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 tvp.ValidIssuers = (tvp.ValidIssuers == null ? issuers : tvp.ValidIssuers.Concat(issuers));
                 tvp.IssuerSigningKeys = (tvp.IssuerSigningKeys == null ? _configuration.SigningKeys : tvp.IssuerSigningKeys.Concat(_configuration.SigningKeys));
 
-                ClaimsPrincipal principal = null;
-                SecurityToken parsedToken = null;
-                var validator = Options.Saml2SecurityTokenHandler;
+                if (!Options.WantAssertionsSigned) // in case they aren't signed
+                {
+                    tvp.RequireSignedTokens = false;
+                }
 
                 if (validator.CanReadToken(token))
                 {
@@ -338,7 +343,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Options.Configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
             }
 
-            string signoutHostUrl= new Uri(CurrentUri).Host;
+            string signoutHostUrl = new Uri(CurrentUri).Host;
             string sendSignoutTo = string.Empty;
             if (!string.IsNullOrEmpty(Options.SignOutURL_PRD))
             {

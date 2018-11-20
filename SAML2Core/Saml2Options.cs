@@ -76,7 +76,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 CertificateStoreLocation = StoreLocation.LocalMachine,
                 HashAlgorithm = HashAlgorithmName.SHA256
             };
-            WantAssertionsSigned = true;
+            WantAssertionsSigned = false;
             RequestIdCookieLifetime = TimeSpan.FromMinutes(10);
             RequestCookieId = new RequestPathBaseCookieBuilder()
             {
