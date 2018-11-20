@@ -24,12 +24,6 @@ services.AddAuthentication(sharedOptions =>
 })
 .AddSamlCore(options =>
 {
-    // ApplicationURL (REQUIRED) - This is the url for the production application. 
-    // This will be used to create two Assertion Consumer Endpoints in your metadata.xml. 
-    // One will be for example https://my.la.gov/sign-in
-    // Second one will be https://[localhost environment]/sign-in 
-    options.ApplicationURL = "https://my.la.gov";
-
     // SignOutPath (REQUIRED) - The endpoint for the idp to perform its signout action
     options.SignOutPath = "/signedout";
 

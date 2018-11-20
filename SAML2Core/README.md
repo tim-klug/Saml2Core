@@ -9,12 +9,6 @@ services.AddAuthentication(sharedOptions =>
 })
 .AddSamlCore(options =>
 {
-    // ApplicationURL (REQUIRED) - This is the url for the production application. 
-    // This will be used to create two Assertion Consumer Endpoints in your metadata.xml. 
-    // One will be for example https://my.la.gov/sign-in
-    // Second one will be https://[localhost environment]/sign-in 
-    options.ApplicationURL = "https://my.la.gov";
-
     // SignOutPath (REQUIRED) - The endpoint for the idp to perform its signout action
     options.SignOutPath = "/signedout";
 
@@ -48,10 +42,12 @@ services.AddAuthentication(sharedOptions =>
     
     //************************************************************
             
-    // Force Authentication (optional) - if you are requiring users to log into the Idp every time.
+    // Force Authentication (optional) - if you are requiring users to log into the Idp every time. Default is set to true
     options.ForceAuthn = true;
 
     // Service Provider Properties (optional) - These set the appropriate tags in the metadata.xml file
+    options.ServiceProvider.ApplicationProductionURL = "https://my.la.gov"; // this will create a production signin endpoint on the Idp side. This will be used when deployed to your production site
+    options.ServiceProvider.ApplicationStageURL = "https://dev.my.la.gov"; //this will create a stage signin endpoint on the Idp side. This will be used when deployed to your stage site
     options.ServiceProvider.ServiceName = "My Test Site";
     options.ServiceProvider.Language = "en-US";
     options.ServiceProvider.OrganizationDisplayName = "Louisiana State Government";
