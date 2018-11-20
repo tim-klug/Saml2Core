@@ -126,12 +126,24 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             {
                 properties.RedirectUri = CurrentUri;
             }
-                       
-            string assertionHostUrl = new Uri(CurrentUri).Host;
-            string assertionHostDevUrl = new Uri(Options.AssertionURL_DEV).Host;
-            string assertionHostAppUrl = new Uri(Options.AssertionURL).Host;
 
-            string sendAssertionTo = assertionHostUrl == assertionHostDevUrl ? Options.AssertionURL_DEV : Options.AssertionURL;
+            string assertionHostUrl = new Uri(CurrentUri).Host;
+            string sendAssertionTo= string.Empty;
+            if (!string.IsNullOrEmpty(Options.AssertionURL_PRD))
+            {
+                string assertionHostPrdUrl = new Uri(Options.AssertionURL_PRD).Host;
+                sendAssertionTo = assertionHostUrl == assertionHostPrdUrl ? Options.AssertionURL_PRD : sendAssertionTo;
+            }
+            if (!string.IsNullOrEmpty(Options.AssertionURL_DEV))
+            {
+                string assertionHostDevUrl = new Uri(Options.AssertionURL_DEV).Host;
+                sendAssertionTo = assertionHostUrl == assertionHostDevUrl ? Options.AssertionURL_DEV : sendAssertionTo;
+            }
+            if (!string.IsNullOrEmpty(Options.AssertionURL_STG))
+            {
+                string assertionHostStgUrl = new Uri(Options.AssertionURL_STG).Host;
+                sendAssertionTo = assertionHostUrl == assertionHostStgUrl ? Options.AssertionURL_STG : sendAssertionTo;
+            }            
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string authnRequestId = "id" + Guid.NewGuid().ToString("N");
@@ -326,6 +338,23 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Options.Configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
             }
 
+            string signoutHostUrl= new Uri(CurrentUri).Host;
+            string sendSignoutTo = string.Empty;
+            if (!string.IsNullOrEmpty(Options.SignOutURL_PRD))
+            {
+                string signoutHostPrdUrl = new Uri(Options.SignOutURL_PRD).Host;
+                sendSignoutTo = signoutHostUrl == signoutHostPrdUrl ? Options.SignOutURL_PRD : string.Empty;
+            }
+            if (!string.IsNullOrEmpty(Options.SignOutURL_DEV))
+            {
+                string signoutHostDevUrl = new Uri(Options.SignOutURL_DEV).Host;
+                sendSignoutTo = signoutHostUrl == signoutHostDevUrl ? Options.SignOutURL_DEV : string.Empty;
+            }
+            if (!string.IsNullOrEmpty(Options.SignOutURL_STG))
+            {
+                string signoutHostStgUrl = new Uri(Options.SignOutURL_STG).Host;
+                sendSignoutTo = signoutHostUrl == signoutHostStgUrl ? Options.AssertionURL_STG : string.Empty;
+            }
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string logoutRequestId = "id" + Guid.NewGuid().ToString("N");
@@ -343,7 +372,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             if (Options.hasCertificate)
             {
                 //create logoutrequest call
-                logoutRequest = _saml2Service.CreateLogoutRequest(Options, logoutRequestId, Context.User.FindFirst(Saml2ClaimTypes.SessionIndex).Value, Context.User.Identity.Name, relayState);
+                logoutRequest = _saml2Service.CreateLogoutRequest(Options, logoutRequestId, Context.User.FindFirst(Saml2ClaimTypes.SessionIndex).Value, Context.User.Identity.Name, relayState, sendSignoutTo);
             }
             //call idp
             Response.Redirect(logoutRequest, true);

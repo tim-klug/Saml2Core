@@ -38,7 +38,22 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The entity identifier.
         /// </value>
         public string EntityId { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the application production URL.
+        /// </summary>
+        /// <value>
+        /// The application production URL.
+        /// </value>
+        public string ApplicationProductionURL { get; set; }        /// <summary>
+        /// Gets or sets the application stage URL.
+        /// </summary>
+        /// <value>
+        /// The application stage URL.
+        /// </value>
+        public string ApplicationStageURL { get; set; }
+
+
         /// <summary>
         /// Gets or sets the name of the certificate store.
         /// </summary>

@@ -1,5 +1,3 @@
-# Installation
-
 # Usage
 1. Modify `ConfigureServices()` in Startup.cs
 

@@ -104,13 +104,40 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 options.StateDataFormat = new PropertiesDataFormat(dataProtector);
             }
 
-            Uri uriAppUrlResult;
-            bool appURLresult = Uri.TryCreate(options.ApplicationURL, UriKind.Absolute, out uriAppUrlResult)
-                && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
-
-            if (!appURLresult)
+            if (options.ServiceProvider.ApplicationProductionURL != null)
             {
-                throw new InvalidOperationException("ApplicationURL is not a valid URL.");
+                Uri uriAppUrlResult;
+                bool appProductionURLresult = Uri.TryCreate(options.ServiceProvider.ApplicationProductionURL, UriKind.Absolute, out uriAppUrlResult)
+                    && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
+
+                if (!appProductionURLresult)
+                {
+                    throw new InvalidOperationException("ApplicationProductionURL is not a valid URL.");
+                }
+                else
+                {
+                    var baseProductionUri = new Uri(options.ServiceProvider.ApplicationProductionURL);
+                    options.AssertionURL_PRD = new Uri(baseProductionUri, options.CallbackPath).AbsoluteUri;
+                    options.SignOutURL_PRD = new Uri(baseProductionUri, options.SignOutPath).AbsoluteUri;
+                }
+            }
+
+            if (options.ServiceProvider.ApplicationStageURL != null)
+            {
+                Uri uriAppUrlResult;
+                bool appStageURLresult = Uri.TryCreate(options.ServiceProvider.ApplicationStageURL, UriKind.Absolute, out uriAppUrlResult)
+                    && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
+
+                if (!appStageURLresult)
+                {
+                    throw new InvalidOperationException("ApplicationStageURL is not a valid URL.");
+                }
+                else
+                {
+                    var baseStageUri = new Uri(options.ServiceProvider.ApplicationStageURL);
+                    options.AssertionURL_STG = new Uri(baseStageUri, options.CallbackPath).AbsoluteUri;
+                    options.SignOutURL_STG= new Uri(baseStageUri, options.SignOutPath).AbsoluteUri;
+                }
             }
             if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue))
             {
@@ -135,13 +162,9 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     options.hasCertificate = true;
                 }
             }
-            //options.ApplicationURL.AbsolutePath = options.CallbackPath;
-            var baseUri = new Uri(options.ApplicationURL);
-            var uri = new Uri(baseUri, options.CallbackPath);
             var request = _httpContextAccessor.HttpContext.Request;
-            options.AssertionURL = uri.AbsoluteUri;
             options.AssertionURL_DEV = request.Scheme + "://" + request.Host.Value + options.CallbackPath;
-            options.SignOutURL = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
+            options.SignOutURL_DEV = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
 
             if (options.Backchannel == null)
             {
@@ -198,6 +221,69 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             //overwrite or create metadata.xml if set to true
             if (options.CreateMetadataFile)
             {
+                IndexedEndpointType[] AssertionConsumerService = new IndexedEndpointType[3];
+
+                if (!string.IsNullOrEmpty(options.AssertionURL_PRD))
+                {
+                    AssertionConsumerService[0] = new IndexedEndpointType
+                    {
+                        Location = options.AssertionURL_PRD,
+                        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
+                        index = 0,
+                        isDefault = true,
+                        isDefaultSpecified = true
+                    };
+                }
+                if (!string.IsNullOrEmpty(options.AssertionURL_STG))
+                {
+                    AssertionConsumerService[1] = new IndexedEndpointType
+                    {
+                        Location = options.AssertionURL_STG,
+                        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
+                        index = 1,
+                        isDefault = false,
+                        isDefaultSpecified = true
+                    };
+                }
+                if (!string.IsNullOrEmpty(options.AssertionURL_DEV))
+                {
+                    AssertionConsumerService[2] = new IndexedEndpointType
+                    {
+                        Location = options.AssertionURL_DEV,
+                        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
+                        index = 2,
+                        isDefault = false,
+                        isDefaultSpecified = true
+                    };
+                }
+
+
+                //EndpointType[] SingleLogoutService = new EndpointType[3];
+                //if (!string.IsNullOrEmpty(options.AssertionURL_PRD))
+                //{
+                //    SingleLogoutService[0] = new EndpointType
+                //    {
+                //        Location = options.SignOutURL_PRD,
+                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect                        
+                //    };
+                //}
+                //if (!string.IsNullOrEmpty(options.AssertionURL_STG))
+                //{
+                //    SingleLogoutService[1] = new EndpointType
+                //    {
+                //        Location = options.SignOutURL_STG,
+                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect
+                //    };
+                //}
+                //if (!string.IsNullOrEmpty(options.AssertionURL_DEV))
+                //{
+                //    SingleLogoutService[2] = new EndpointType
+                //    {
+                //        Location = options.SignOutURL_DEV,
+                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect
+                //    };
+                //}
+
                 Metadata.KeyDescriptorType[] KeyDescriptor = null;
                 if (options.hasCertificate)
                 {
@@ -254,31 +340,15 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                             WantAssertionsSignedSpecified= true,
                             WantAssertionsSigned=true,
                             KeyDescriptor= KeyDescriptor,
+                            //SingleLogoutService= SingleLogoutService,
                             SingleLogoutService = new EndpointType[]{
                                 new EndpointType
                                 {
-                                    Location = options.SignOutURL,
-                                    Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect
+                                    Location = options.SignOutURL_DEV,
+                                    Binding = options.SingleLogoutServiceProtocolBinding //must only allow Post back to sp
                                 }
                             },
-                            AssertionConsumerService = new IndexedEndpointType[]{
-                                new IndexedEndpointType
-                                {
-                                    Location=  options.AssertionURL,
-                                    Binding =  options.AssertionConsumerServiceProtocolBinding, //must only allow POST
-                                    index = 0,
-                                    isDefault = true,
-                                    isDefaultSpecified = true
-                                },
-                                new IndexedEndpointType
-                                {
-                                    Location=  options.AssertionURL_DEV,
-                                    Binding =  options.AssertionConsumerServiceProtocolBinding, //must only allow POST
-                                    index = 1,
-                                    isDefault = false,
-                                    isDefaultSpecified = true
-                                }
-                            },
+                            AssertionConsumerService = AssertionConsumerService,
                             AttributeConsumingService =  new AttributeConsumingServiceType[]
                             {
                                 new AttributeConsumingServiceType

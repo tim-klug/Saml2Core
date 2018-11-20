@@ -87,15 +87,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             };
             Events = new Saml2Events();
             AllowUnsolicitedLogins = false;
-        }
-
-        /// <summary>
-        /// Gets or sets the application URL.
-        /// </summary>
-        /// <value>
-        /// The application URL.
-        /// </value>
-        public string ApplicationURL { get; set; }
+        }        
         /// <summary>
         /// Gets or sets the assertion URL. The default value is "/saml2-signin"
         /// This URL is used by the Idp to POST back to the SAML assertion/token.
@@ -103,7 +95,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// <value>
         /// The assertion URL.
         /// </value>
-        internal string AssertionURL { get; set; }
+        internal string AssertionURL_PRD { get; set; }
 
         /// <summary>
         /// Gets or sets the assertion URL dev.
@@ -114,13 +106,23 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         internal string AssertionURL_DEV { get; set; }
 
         /// <summary>
+        /// Gets or sets the assertion URL STG.
+        /// </summary>
+        /// <value>
+        /// The assertion URL STG.
+        /// </value>
+        internal string AssertionURL_STG { get; set; }
+
+        /// <summary>
         /// Gets or sets the sign out URL. The default value is "/signedout"
         /// This URL is used by the Idp to POST back to after it logs the user out of the Idp session.
         /// </summary>
         /// <value>
         /// The sign out URL.
         /// </value>
-        internal string SignOutURL { get; set; }
+        internal string SignOutURL_DEV { get; set; }
+        internal string SignOutURL_STG { get; set; }
+        internal string SignOutURL_PRD { get; set; }
 
         /// <summary>
         /// Gets or sets the default redirect URL. The default value is "/"

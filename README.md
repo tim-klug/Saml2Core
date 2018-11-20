@@ -67,6 +67,8 @@ services.AddAuthentication(sharedOptions =>
     options.ForceAuthn = true;
 
     // Service Provider Properties (optional) - These set the appropriate tags in the metadata.xml file
+    options.ServiceProvider.ApplicationProductionURL = "https://my.la.gov"; // this will create a production signin endpoint on the Idp side. This will be used when deployed to your production site
+    options.ServiceProvider.ApplicationStageURL = "https://dev.my.la.gov"; //this will create a stage signin endpoint on the Idp side. This will be used when deployed to your stage site
     options.ServiceProvider.ServiceName = "My Test Site";
     options.ServiceProvider.Language = "en-US";
     options.ServiceProvider.OrganizationDisplayName = "Louisiana State Government";

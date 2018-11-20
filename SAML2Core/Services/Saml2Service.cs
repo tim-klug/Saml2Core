@@ -161,16 +161,17 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// <param name="sessionIndex">Index of the session.</param>
         /// <param name="nameId">The name identifier.</param>
         /// <param name="relayState">State of the relay.</param>
+        /// <param name="signOutUrl">The sign out URL.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Signing key must be an instance of either RSA or DSA.</exception>
-        public string CreateLogoutRequest(Saml2Options options, string logoutRequestId, string sessionIndex, string nameId, string relayState)
+        public string CreateLogoutRequest(Saml2Options options, string logoutRequestId, string sessionIndex, string nameId, string relayState, string sendSignoutTo)
         {
             NameIDType entityID = new NameIDType()
             {
                 Value = options.ServiceProvider.EntityId
             };
 
-            var singleLogoutService = options.Configuration.SingleLogoutServices.FirstOrDefault(x => x.Binding == options.SingleLogoutServiceProtocolBinding);
+            var singleLogoutService = options.Configuration.SingleLogoutServices.FirstOrDefault(x => x.Binding == options.SingleLogoutServiceProtocolBinding );
 
             LogoutRequest logoutRequest = new LogoutRequest()
             {
@@ -179,8 +180,8 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Version = Saml2Constants.Version,
                 Reason = Saml2Constants.Reasons.User,
                 SessionIndex = new string[] { sessionIndex },
-                Destination = singleLogoutService.Location.ToString(),
-                IssueInstant = DateTime.UtcNow,
+                Destination = singleLogoutService.Location.ToString(),                   
+                IssueInstant = DateTime.UtcNow,                
                 Item = new NameIDType()
                 {
                     Format = options.NameIDType.Format,
