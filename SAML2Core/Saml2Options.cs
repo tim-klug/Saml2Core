@@ -90,6 +90,13 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         }
 
         /// <summary>
+        /// Gets or sets the application URL.
+        /// </summary>
+        /// <value>
+        /// The application URL.
+        /// </value>
+        public string ApplicationURL { get; set; }
+        /// <summary>
         /// Gets or sets the assertion URL. The default value is "/saml2-signin"
         /// This URL is used by the Idp to POST back to the SAML assertion/token.
         /// </summary>
@@ -97,6 +104,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The assertion URL.
         /// </value>
         internal string AssertionURL { get; set; }
+
+        /// <summary>
+        /// Gets or sets the assertion URL dev.
+        /// </summary>
+        /// <value>
+        /// The assertion URL dev.
+        /// </value>
+        internal string AssertionURL_DEV { get; set; }
 
         /// <summary>
         /// Gets or sets the sign out URL. The default value is "/signedout"

@@ -126,10 +126,16 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             {
                 properties.RedirectUri = CurrentUri;
             }
+                       
+            string assertionHostUrl = new Uri(CurrentUri).Host;
+            string assertionHostDevUrl = new Uri(Options.AssertionURL_DEV).Host;
+            string assertionHostAppUrl = new Uri(Options.AssertionURL).Host;
+
+            string sendAssertionTo = assertionHostUrl == assertionHostDevUrl ? Options.AssertionURL_DEV : Options.AssertionURL;
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string authnRequestId = "id" + Guid.NewGuid().ToString("N");
-            string assertionConsumerServiceUrl = Options.AssertionURL;
+            string assertionConsumerServiceUrl = sendAssertionTo;
 
             GenerateCorrelationId(properties);
             string relayState = Options.StateDataFormat.Protect(properties);

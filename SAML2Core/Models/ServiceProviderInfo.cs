@@ -38,6 +38,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The entity identifier.
         /// </value>
         public string EntityId { get; set; }
+        
         /// <summary>
         /// Gets or sets the name of the certificate store.
         /// </summary>

@@ -103,6 +103,15 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     typeof(Saml2Handler).FullName, name, "v1");
                 options.StateDataFormat = new PropertiesDataFormat(dataProtector);
             }
+
+            Uri uriAppUrlResult;
+            bool appURLresult = Uri.TryCreate(options.ApplicationURL, UriKind.Absolute, out uriAppUrlResult)
+                && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
+
+            if (!appURLresult)
+            {
+                throw new InvalidOperationException("ApplicationURL is not a valid URL.");
+            }
             if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue))
             {
                 using (var store = new X509Store(options.ServiceProvider.CertificateStoreName, options.ServiceProvider.CertificateStoreLocation))
@@ -126,9 +135,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     options.hasCertificate = true;
                 }
             }
-
+            //options.ApplicationURL.AbsolutePath = options.CallbackPath;
+            var baseUri = new Uri(options.ApplicationURL);
+            var uri = new Uri(baseUri, options.CallbackPath);
             var request = _httpContextAccessor.HttpContext.Request;
-            options.AssertionURL = request.Scheme + "://" + request.Host.Value + options.CallbackPath;
+            options.AssertionURL = uri.AbsoluteUri;
+            options.AssertionURL_DEV = request.Scheme + "://" + request.Host.Value + options.CallbackPath;
             options.SignOutURL = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
 
             if (options.Backchannel == null)
@@ -257,6 +269,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                                     index = 0,
                                     isDefault = true,
                                     isDefaultSpecified = true
+                                },
+                                new IndexedEndpointType
+                                {
+                                    Location=  options.AssertionURL_DEV,
+                                    Binding =  options.AssertionConsumerServiceProtocolBinding, //must only allow POST
+                                    index = 1,
+                                    isDefault = false,
+                                    isDefaultSpecified = true
                                 }
                             },
                             AttributeConsumingService =  new AttributeConsumingServiceType[]
@@ -365,7 +385,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 xmlDoc.LoadXml(xmlTemplate);
                 xmlDoc.PreserveWhitespace = true;
                 xmlDoc.Save(options.DefaultMetadataFolderLocation + "\\" + options.DefaultMetadataFileName + ".xml");
-            }           
+            }
         }
     }
 }

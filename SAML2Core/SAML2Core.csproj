@@ -7,12 +7,16 @@
     <PackageTags>authentication;security</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.7</Version>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Version>1.1.1</Version>
+    <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
     <Authors>Dina Heidar</Authors>
-    <Company>State of Louisiana - OTS</Company>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    <Company></Company>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
