@@ -278,6 +278,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
        
         /// <summary>
         /// Gets or sets a value indicating whether authentication is required.
+        /// Default value is set to true
         /// </summary>
         /// <value>
         ///   <c>true</c> if [force authn]; otherwise, <c>false</c>.

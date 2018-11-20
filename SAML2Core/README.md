@@ -1,18 +1,5 @@
 # Installation
 
-1. Setup APPDM nuget server as a package source in Visual Studio
-
-![gear](screenshots/gear.PNG)
-![nuget](screenshots/appdm_nuget.PNG)
-   
-2. Change package source to APPDM
-
-![package source](screenshots/change_package_source.PNG)
-    
-3. Find SAML2Core package and install
-
-![install](screenshots/install.PNG)
-
 # Usage
 1. Modify `ConfigureServices()` in Startup.cs
 
@@ -63,7 +50,7 @@ services.AddAuthentication(sharedOptions =>
     
     //************************************************************
             
-    // Force Authentication (optional) - if you are requiring users to log into the Idp every time. Default is set to true
+    // Force Authentication (optional) - if you are requiring users to log into the Idp every time.
     options.ForceAuthn = true;
 
     // Service Provider Properties (optional) - These set the appropriate tags in the metadata.xml file
