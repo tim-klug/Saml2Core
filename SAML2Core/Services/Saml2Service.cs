@@ -107,7 +107,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Destination = singleSignOnService.Location.ToString(),
                 ProtocolBinding = singleSignOnService.Binding.ToString(),
                 IssueInstant = DateTime.UtcNow,
-                AssertionConsumerServiceURL = assertionConsumerServiceUrl,               
+                AssertionConsumerServiceURL = assertionConsumerServiceUrl               
                 //RequestedAuthnContext = new RequestedAuthnContextType()
                 //{
                 //    Comparison = AuthnContextComparisonType.exact,

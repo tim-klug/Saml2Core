@@ -83,9 +83,7 @@ namespace Saml2Authentication
                     contactType = ContactTypeType.technical,
                     TelephoneNumber = new[] { "+1 234 5678" }
                 };
-
                 // Events - Modify events below if you want to log errors, add custom claims, etc.
-
                 //options.Events.OnRemoteFailure = context =>
                 //{
                 //    return Task.FromResult(0);

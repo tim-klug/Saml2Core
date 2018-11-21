@@ -35,6 +35,13 @@ services.AddAuthentication(sharedOptions =>
     //************************************************************************************************************
     // Certificate (REQUIRED) if you want you application (SP) to sign the authentication request (AuthnRequest)
     // The certificate serial number value. 
+
+    // PRE-REQUISITE: Install your certificate in your server/local certificate store under the Trusted Root folder.
+    // The middleware searches by default by serial number in the Trusted Root folder. This can be changed by:
+    // options.ServiceProvider.CertificateStoreName = StoreName.Root;
+    // options.ServiceProvider.CertificateStoreLocation = StoreLocation.LocalMachine
+    // options.ServiceProvider.CertificateStoreLocation.HashAlgorithm = HashAlgorithmName.SHA256
+                
     options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
 
     // For signed AuthnRequest - if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
@@ -66,10 +73,18 @@ services.AddAuthentication(sharedOptions =>
 
     //options.Events.OnRemoteFailure = context =>
     //{
+    //TODO: do whatever you want here if you need to re-direct to somewhere if there 
+    // an error from provider
+    //    context.Response.Redirect(new PathString("/Account/Login"));
+          context.HandleResponse();
     //    return Task.FromResult(0);
     //};              
     //options.Events.OnTicketReceived = context =>
-    //{  //TODO: add custom claims here
+    //{  
+    //TODO: add custom claims here
+    //    var identity = (ClaimsIdentity)context.Principal.Identity;
+    //    identity.RemoveClaim(identity.FindFirst(ClaimTypes.Name)); //remove the screen name to add full name
+    //    identity.AddClaim(new Claim(ClaimTypes.Name, context.User["name"].ToString()));
     //    return Task.FromResult(0);
     //};               
 })

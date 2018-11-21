@@ -128,7 +128,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2.Metadata
     [System.Xml.Serialization.XmlRootAttribute("AdditionalContext", Namespace = "http://docs.oasis-open.org/wsfed/authorization/200706", IsNullable = false)]
     public partial class AdditionalContextType
     {
-
         private ContextItemType[] contextItemField;
 
         private System.Xml.XmlElement[] anyField;
