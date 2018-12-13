@@ -233,12 +233,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Reads the security token service type role descriptor.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns></returns>
         protected virtual Saml2SecurityTokenServiceTypeRoleDescriptor ReadSecurityTokenServiceTypeRoleDescriptor(XmlReader reader)
         {
             XmlUtil.CheckReaderOnEntry(reader, Elements.IdpssoDescriptor, Namespaces.MetadataNamespace);
-
-            //if (!IsSecurityTokenServiceTypeRoleDescriptor(reader))
-            //    throw XmlUtil.LogReadException(LogMessages.IDX22804);
 
             var roleDescriptor = new Saml2SecurityTokenServiceTypeRoleDescriptor();
 

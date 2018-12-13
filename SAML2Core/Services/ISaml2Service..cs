@@ -21,6 +21,7 @@
 //SOFTWARE.
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
+using System.Xml;
 
 namespace SamlCore.AspNetCore.Authentication.Saml2
 {
@@ -53,8 +54,16 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </summary>
         /// <param name="base64EncodedSamlResponse">The base64 encoded saml response.</param>
         /// <param name="responseType">Type of the response.</param>
+        /// <param name="options">The options.</param>
         /// <returns></returns>
-        ResponseType GetSamlResponseToken(string base64EncodedSamlResponse, string responseType);
+        ResponseType GetSamlResponseToken(string base64EncodedSamlResponse, string responseType, Saml2Options options);
+        /// <summary>
+        /// Validates the X509 certificate signature.
+        /// </summary>
+        /// <param name="xmlDoc">The XML document.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
+        bool ValidateX509CertificateSignature(XmlDocument xmlDoc, Saml2Options options);
         /// <summary>
         /// Checks if replay attack.
         /// </summary>
@@ -70,7 +79,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// Gets the assertion.
         /// </summary>
         /// <param name="idpSamlResponseToken">The idp saml response token.</param>
-        /// <param name="privateKey">The private key.</param>
         /// <param name="options">The options.</param>
         /// <returns></returns>
         string GetAssertion(ResponseType idpSamlResponseToken, Saml2Options options);

@@ -107,7 +107,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Destination = singleSignOnService.Location.ToString(),
                 ProtocolBinding = singleSignOnService.Binding.ToString(),
                 IssueInstant = DateTime.UtcNow,
-                AssertionConsumerServiceURL = assertionConsumerServiceUrl               
+                AssertionConsumerServiceURL = assertionConsumerServiceUrl
                 //RequestedAuthnContext = new RequestedAuthnContextType()
                 //{
                 //    Comparison = AuthnContextComparisonType.exact,
@@ -141,7 +141,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             if (options.ServiceProvider.X509Certificate2 != null)
             {
                 AsymmetricAlgorithm spPrivateKey = spCertificate.PrivateKey;
-                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;                
+                string hashingAlgorithm = options.Configuration.Signature.SignedInfo.SignatureMethod;
                 // Check if the key is of a supported type. [SAMLBind] sect. 3.4.4.1 specifies this.
                 if (!(spPrivateKey is RSA || spPrivateKey is DSA || spPrivateKey == null))
                     throw new ArgumentException("Signing key must be an instance of either RSA or DSA.");
@@ -161,7 +161,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// <param name="sessionIndex">Index of the session.</param>
         /// <param name="nameId">The name identifier.</param>
         /// <param name="relayState">State of the relay.</param>
-        /// <param name="signOutUrl">The sign out URL.</param>
+        /// <param name="sendSignoutTo">The send signout to.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Signing key must be an instance of either RSA or DSA.</exception>
         public string CreateLogoutRequest(Saml2Options options, string logoutRequestId, string sessionIndex, string nameId, string relayState, string sendSignoutTo)
@@ -171,7 +171,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Value = options.ServiceProvider.EntityId
             };
 
-            var singleLogoutService = options.Configuration.SingleLogoutServices.FirstOrDefault(x => x.Binding == options.SingleLogoutServiceProtocolBinding );
+            var singleLogoutService = options.Configuration.SingleLogoutServices.FirstOrDefault(x => x.Binding == options.SingleLogoutServiceProtocolBinding);
 
             LogoutRequest logoutRequest = new LogoutRequest()
             {
@@ -180,8 +180,8 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Version = Saml2Constants.Version,
                 Reason = Saml2Constants.Reasons.User,
                 SessionIndex = new string[] { sessionIndex },
-                Destination = singleLogoutService.Location.ToString(),                   
-                IssueInstant = DateTime.UtcNow,                
+                Destination = singleLogoutService.Location.ToString(),
+                IssueInstant = DateTime.UtcNow,
                 Item = new NameIDType()
                 {
                     Format = options.NameIDType.Format,
@@ -318,9 +318,11 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </summary>
         /// <param name="base64EncodedSamlResponse">The base64 encoded saml response.</param>
         /// <param name="responseType">Type of the response.</param>
+        /// <param name="options"></param>
         /// <returns></returns>
+        /// <exception cref="Exception">Response signature is not valid</exception>
         /// <exception cref="ArgumentException">Cannot verify signature.</exception>
-        public ResponseType GetSamlResponseToken(string base64EncodedSamlResponse, string responseType)
+        public ResponseType GetSamlResponseToken(string base64EncodedSamlResponse, string responseType, Saml2Options options)
         {
             var doc = new XmlDocument
             {
@@ -337,6 +339,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             string samlResponse = Encoding.UTF8.GetString(bytes);
             doc.LoadXml(samlResponse);
 
+            if (options.RequireMessageSigned)
+            {
+                if (!ValidateX509CertificateSignature(doc, options))
+                {
+                    throw new Exception("Response signature is not valid");
+                }
+            }
+
             ResponseType samlResponseToken;
             XmlSerializer xmlSerializers = new XmlSerializer(typeof(ResponseType), new XmlRootAttribute { ElementName = responseType, Namespace = Saml2Constants.Namespaces.Protocol, IsNullable = false });
             using (XmlReader reader = new XmlNodeReader(doc))
@@ -344,6 +354,25 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 samlResponseToken = (ResponseType)xmlSerializers.Deserialize(reader);
             }
             return samlResponseToken;
+        }
+
+        /// <summary>
+        /// Validates the X509 certificate signature.
+        /// </summary>
+        /// <param name="xmlDoc">The XML document.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
+        public bool ValidateX509CertificateSignature(XmlDocument xmlDoc, Saml2Options options)
+        {
+            XmlNodeList XMLSignatures = xmlDoc.GetElementsByTagName(Saml2Constants.Parameters.Signature, Saml2Constants.Namespaces.DsNamespace);
+            //XmlNodeList XMLSignatures = xnlDoc.GetElementsByTagName("Signature", "http://www.w3.org/2000/09/xmldsig#");
+
+            // Checking If the Response or the Assertion has been signed once and only once.
+            if (XMLSignatures.Count != 1) return false;
+
+            var signedXmlDoc = new SignedXml(xmlDoc);
+            signedXmlDoc.LoadXml((XmlElement)XMLSignatures[0]);
+            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options), false);
         }
 
         /// <summary>
@@ -358,13 +387,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </exception>
         public void CheckIfReplayAttack(string inResponseTo, string originalSamlRequestId)
         {
-            //var inResponseToAttribute = element.Attributes["InResponseTo"];
-            //if (string.IsNullOrEmpty(inResponseTo))
-            //{
-            //    throw new Exception("Received a response message that did not contain an InResponseTo attribute");
-            //}
-
-            // var inResponseTo = inResponseToAttribute.Value;
             if (string.IsNullOrEmpty(originalSamlRequestId) || string.IsNullOrEmpty(inResponseTo))
             {
                 throw new Exception("Empty protocol message id is not allowed.");
@@ -521,41 +543,5 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             Rijndael key = Rijndael.Create(hashAlgorithm);
             return key;
         }
-
-        //public User GetUserFromToken(Saml2SecurityToken Token)
-        //{
-        //    //Get user information from the token started
-        //    User User = new User();
-        //    if (Token != null)
-        //    {
-        //        if (Token.Assertion.Subject.NameId != null && (Token.Assertion.Subject.NameId.Format == null || Token.Assertion.Subject.NameId.Format.OriginalString == "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"))
-        //            User.EmailAddress = Token.Assertion.Subject.NameId.Value;
-        //        foreach (var Statement in Token.Assertion.Statements)
-        //        {
-        //            var AttributeStatement = Statement as Saml2AttributeStatement;
-        //            var AuthenticationStatement = Statement as Saml2AuthenticationStatement;
-        //            if (AttributeStatement != null)
-        //                foreach (var Saml2Attribute in AttributeStatement.Attributes)
-        //                {
-        //                    if (Saml2Attribute.Name.Equals("mail") || Saml2Attribute.Name.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"))
-        //                        User.EmailAddress = Saml2Attribute.Values[0];
-        //                    if (Saml2Attribute.Name.Equals("uid") || Saml2Attribute.Name.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"))
-        //                        User.Name = Saml2Attribute.Values[0];
-        //                    if (Saml2Attribute.Name.Equals("phone"))
-        //                        User.MobileNumber = Saml2Attribute.Values[0];
-        //                    if (Saml2Attribute.Name.Equals("title"))
-        //                        User.JobTitle = Saml2Attribute.Values[0];
-        //                    if (Saml2Attribute.Name.Equals("company"))
-        //                        User.CompanyName = Saml2Attribute.Values[0];
-        //                }
-        //            if (AuthenticationStatement != null)
-        //            {
-        //                User.SAMLSessionIndex = AuthenticationStatement.SessionIndex;
-        //            }
-        //        }
-        //    }
-        //    //Successfully parsed user credentials
-        //    return User;
-        //}
     }
 }

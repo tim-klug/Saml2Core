@@ -31,6 +31,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace SamlCore.AspNetCore.Authentication.Saml2
@@ -203,7 +204,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             var form = await Request.ReadFormAsync();
             var response = form[Saml2Constants.Parameters.SamlResponse];
-            var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();
+            var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();          
 
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
 
@@ -224,7 +225,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 }
 
                 string base64EncodedSamlResponse = response;
-                ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.AuthnResponse);
+                ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.AuthnResponse, Options);
 
                 IRequestCookieCollection cookies = Request.Cookies;
                 string originalSamlRequestId = cookies[cookies.Keys.FirstOrDefault(key => key.StartsWith(Options.AuthenticationScheme))];
@@ -239,6 +240,21 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 using (MemoryStream memStm = new MemoryStream(Encoding.UTF8.GetBytes(token)))
                 {
                     assertion = (AssertionType)xmlSerializer.Deserialize(memStm);
+                }
+
+                if (Options.WantAssertionsSigned)
+                {
+                    var doc = new XmlDocument
+                    {
+                        XmlResolver = null,
+                        PreserveWhitespace = true
+                    };
+                    doc.LoadXml(token);
+
+                    if (!_saml2Service.ValidateX509CertificateSignature(doc, Options))
+                    {
+                        throw new Exception("Assertion signature is not valid");
+                    }
                 }
 
                 AuthnStatementType session = new AuthnStatementType();
@@ -411,7 +427,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
 
             string base64EncodedSamlResponse = response;
-            ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.LogoutResponse);
+            ResponseType idpSamlResponseToken = _saml2Service.GetSamlResponseToken(base64EncodedSamlResponse, Saml2Constants.ResponseTypes.LogoutResponse, Options);
 
             IRequestCookieCollection cookies = Request.Cookies;
             string signoutSamlRequestId = cookies[cookies.Keys.FirstOrDefault(key => key.StartsWith(Options.AuthenticationScheme + Options.SignOutPath))];

@@ -77,6 +77,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 HashAlgorithm = HashAlgorithmName.SHA256
             };
             WantAssertionsSigned = false;
+            RequireMessageSigned = false;
             RequestIdCookieLifetime = TimeSpan.FromMinutes(10);
             RequestCookieId = new RequestPathBaseCookieBuilder()
             {
@@ -249,10 +250,19 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         internal bool AllowUnsolicitedLogins { get; set; }
 
         /// <summary>
+        /// Gets or sets a bool value indicating that the Identity Provider must have the message signed. 
+        /// This needs to be set on the Idp side.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [require message signed]; otherwise, <c>false</c>.
+        /// </value>
+        public bool RequireMessageSigned { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [require signed assertion].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [require signed assertion]; otherwise, <c>false</c>.
+        ///   <c>true</c> if [want signed assertion]; otherwise, <c>false</c>.
         /// </value>
         public bool WantAssertionsSigned { get; set; }
         /// <summary>

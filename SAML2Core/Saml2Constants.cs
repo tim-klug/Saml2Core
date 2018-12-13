@@ -54,7 +54,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             /// <summary>
             /// The ds namespace
             /// </summary>
-            public const string DsNamespace = "http://wwww.w3.org/2000/09/xmldsig#";
+            public const string DsNamespace = "http://www.w3.org/2000/09/xmldsig#";
         }
         public static class Reasons
         {

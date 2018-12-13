@@ -88,70 +88,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
     [System.Xml.Serialization.XmlRootAttribute("SubjectConfirmationData", Namespace = "urn:oasis:names:tc:SAML:2.0:assertion", IsNullable = false)]
     public partial class SubjectConfirmationDataType
     {
-        /// <summary>
-        /// The text field
-        /// </summary>
-        //private string[] textField;
-
-        /// <summary>
-        /// Gets or sets the text.
-        /// </summary>
-        /// <value>
-        /// The text.
-        /// </value>
-        //[System.Xml.Serialization.XmlTextAttribute()]      
-        //public string[] Text
-        //{
-        //    get
-        //    {
-        //        return this.textField;
-        //    }
-        //    set
-        //    {
-        //        this.textField = value;
-        //    }
-        //}
-
-        //private object[] itemsField;
-        //private ItemsChoiceType8[] itemsElementNameField;
-
-        /// <summary>
-        /// Gets or sets the items.
-        /// </summary>
-        /// <value>
-        /// The items.
-        /// </value>
-        //[System.Xml.Serialization.XmlElementAttribute("Recipient", typeof(string), DataType = "anyURI", IsNullable = true)]
-        //[System.Xml.Serialization.XmlElementAttribute("InResponseTo", typeof(string), DataType = "NCName", IsNullable = true)]     
-        //[System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        //public object[] Items
-        //{
-        //    get
-        //    {
-        //        return this.itemsField;
-        //    }
-        //    set
-        //    {
-        //        this.itemsField = value;
-        //    }
-        //}
-
-        //[System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-        //[System.Xml.Serialization.XmlIgnoreAttribute()]
-        //public ItemsChoiceType8[] ItemsElementName
-        //{
-        //    get
-        //    {
-        //        return this.itemsElementNameField;
-        //    }
-        //    set
-        //    {
-        //        this.itemsElementNameField = value;
-        //    }
-        //}
-
-        //private System.DateTime notBeforeField;
-        private bool notBeforeFieldSpecified;
+        //private bool notBeforeFieldSpecified;
         private System.DateTime notOnOrAfterField;
         private bool notOnOrAfterFieldSpecified;
         private string recipientField;
@@ -161,52 +98,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         private string addressField;
         private bool addressFieldSpecified;
 
-        /// <summary>
-        /// Gets or sets the not before.
-        /// </summary>
-        /// <value>
-        /// The not before.
-        /// </value>
-        //[System.Xml.Serialization.XmlAttributeAttribute()]      
-        //public System.DateTime NotBefore
-        //{
-        //    get
-        //    {
-        //        return this.notBeforeField;
-        //    }
-        //    set
-        //    {
-        //        this.notBeforeField = value;
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets or sets a value indicating whether [not before specified].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [not before specified]; otherwise, <c>false</c>.
-        /// </value>
-        //[System.Xml.Serialization.XmlIgnoreAttribute()]
-        //public bool notBeforeSpecified
-        //{
-        //    get
-        //    {
-        //        return this.notBeforeFieldSpecified;
-        //    }
-        //    set
-        //    {
-        //        this.notBeforeFieldSpecified = value;
-        //    }
-        //}
-
+        
         /// <summary>
         /// Gets or sets the not on or after.
         /// </summary>
         /// <value>
         /// The not on or after.
         /// </value>
-        [System.Xml.Serialization.XmlAttributeAttribute()]      
-        //[System.Xml.Serialization.XmlAttribute(DataType = "date")]
+        [System.Xml.Serialization.XmlAttributeAttribute()] 
         public System.DateTime NotOnOrAfter
         {
             get
@@ -239,6 +138,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Gets or sets the recipient.
+        /// </summary>
+        /// <value>
+        /// The recipient.
+        /// </value>
         [System.Xml.Serialization.XmlAttribute(DataType = "anyURI")]
         public string Recipient
         {
@@ -252,6 +157,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [recipient specified].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [recipient specified]; otherwise, <c>false</c>.
+        /// </value>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool recipientSpecified
         {
@@ -264,6 +175,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 this.recipientFieldSpecified = value;
             }
         }
+        /// <summary>
+        /// Gets or sets the in response to.
+        /// </summary>
+        /// <value>
+        /// The in response to.
+        /// </value>
         [System.Xml.Serialization.XmlAttribute(DataType = "NCName")]
         public string InResponseTo
         {
@@ -277,6 +194,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [in response to specified].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [in response to specified]; otherwise, <c>false</c>.
+        /// </value>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool inResponseToSpecified
         {
@@ -290,6 +213,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        /// <value>
+        /// The address.
+        /// </value>
         [System.Xml.Serialization.XmlAttribute(DataType = "string")]
         public string Address
         {
@@ -303,6 +232,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [address to specified].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [address to specified]; otherwise, <c>false</c>.
+        /// </value>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool addressToSpecified
         {
@@ -314,83 +249,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             {
                 this.addressFieldSpecified = value;
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the not on or after.
-        /// </summary>
-        /// <value>
-        /// The not on or after.
-        /// </value>
-        //[System.Xml.Serialization.XmlTextAttribute()]
-        //public System.DateTime NotOnOrAfter
-        //{
-        //    get
-        //    {
-        //        return this.notOnOrAfterField;
-        //    }
-        //    set
-        //    {
-        //        this.notOnOrAfterField = value;
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets or sets the recipient.
-        /// </summary>
-        /// <value>
-        /// The recipient.
-        /// </value>
-        //[System.Xml.Serialization.XmlElementAttribute("Recipient", DataType = "anyURI")]
-        //public string Recipient
-        //{
-        //    get
-        //    {
-        //        return this.recipientField;
-        //    }
-        //    set
-        //    {
-        //        this.recipientField = value;
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets or sets the in response to.
-        /// </summary>
-        /// <value>
-        /// The in response to.
-        /// </value>
-        //[System.Xml.Serialization.XmlElementAttribute("InResponseTo", DataType = "NCName")]
-        //public string InResponseTo
-        //{
-        //    get
-        //    {
-        //        return this.inResponseToField;
-        //    }
-        //    set
-        //    {
-        //        this.inResponseToField = value;
-        //    }
-        //}
-
-        /// <summary>
-        /// Gets or sets the address.
-        /// </summary>
-        /// <value>
-        /// The address.
-        /// </value>
-        //[System.Xml.Serialization.XmlElementAttribute()]
-        //public string Address
-        //{
-        //    get
-        //    {
-        //        return this.addressField;
-        //    }
-        //    set
-        //    {
-        //        this.addressField = value;
-        //    }
-        //}
+        }        
     }
 
     //[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
@@ -2534,9 +2393,15 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
     [System.Xml.Serialization.XmlRootAttribute("Signature", Namespace = "http://www.w3.org/2000/09/xmldsig#", IsNullable = false)]
     public partial class SignatureType
     {
+        /// <summary>
+        /// The XMLNS
+        /// </summary>
         [XmlNamespaceDeclarations]
         public XmlSerializerNamespaces xmlns = new XmlSerializerNamespaces();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureType"/> class.
+        /// </summary>
         public SignatureType()
         {
             xmlns.Add("ds", "http://www.w3.org/2000/09/xmldsig#");           
