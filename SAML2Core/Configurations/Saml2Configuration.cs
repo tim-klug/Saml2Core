@@ -41,7 +41,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// <value>
         /// The X509 certificate2.
         /// </value>
-        public X509Certificate2 X509Certificate2 { get; set; }
+        public ICollection<X509Certificate2> X509Certificate2 { get; set; } = new List<X509Certificate2>();
         /// <summary>
         /// Gets or sets the issuer.
         /// </summary>

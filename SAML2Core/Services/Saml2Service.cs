@@ -63,10 +63,16 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// Gets the identity provider certficate.
         /// </summary>
         /// <param name="options">The options.</param>
+        /// <param name="serialNumber">The serial number.</param>
         /// <returns></returns>
-        private X509Certificate2 GetIdentityProviderCertficate(Saml2Options options)
+        private X509Certificate2 GetIdentityProviderCertficate(Saml2Options options, string serialNumber)
         {
-            return options.Configuration.X509Certificate2;
+            X509Certificate2 cert = options.Configuration.X509Certificate2.Where(c => c.SerialNumber == serialNumber).FirstOrDefault();
+            if (cert == null)
+            {
+                throw new Exception("No matching certificate found. Assertion is not from known Idp.");
+            }
+            return cert;
         }
 
         /// <summary>
@@ -372,7 +378,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             var signedXmlDoc = new SignedXml(xmlDoc);
             signedXmlDoc.LoadXml((XmlElement)XMLSignatures[0]);
-            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options), false);
+            
+            //IDP might have multiple siing certs. Get the correct one and check it
+            KeyInfoX509Data x509data = signedXmlDoc.Signature.KeyInfo.OfType<KeyInfoX509Data>().First();
+            X509Certificate2 cert = (X509Certificate2)x509data.Certificates[0];
+            string serialNumber = cert.SerialNumber;
+            //bool verified = cert != null && signedXmlDoc.CheckSignature(cert, false);
+            //var t= signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), false);
+            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), false);
         }
 
         /// <summary>

@@ -1,12 +1,31 @@
-# Options
+# Saml2Core Middleware
+
+This is a Saml2 middleware that can be used with any .Net Core applications to authenticate via SAML. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It has been tested with ADFS and IdentityServer4 as well.
+
+##### The middleware:
+1. Creates AuthnRequests to the Idp.
+2. Decrypts encrypted SAML ssertions (if encrypted).
+3. Checks and validates Idp signatures (if required, see options).
+4. Converts the Saml Assertions into User claims.
+5. Self generates the SP (application) metadata.xml file if needed (see options).  
+
+## Nuget Installation 
+
+[Link to Nuget page](https://www.nuget.org/packages/SAML2Core/)
+```cs
+
+PM> Install-Package SAML2Core
+
+```
+## Options
 
 ### 1. Required
 
 | Name                      | Example value                                                                 | Datatype          |    Description    |
 | -------------             |-------------                                                                  | -----             |    -----         |
 | SignOutPath               | "/signedout"                                                                  | string            | The endpoint for the IDP to perform its signout action |
-| ServiceProvider.EntityId  | "https://my.la.gov.local"                                                     | string            | The Relying Party Identifier
-| MetadataAddress           | "https://dev.adfs.la.gov/federationmetadata/2007-06/FederationMetadata.xml"  | string            | The IDP FederationMetadata. This can be either a URL or a file at the root of your project e.g '@"FederationMetadata.xml"'
+| ServiceProvider.EntityId  | "https://my.la.gov.local"                                                     | string            | The Relying Party Identifier |
+| MetadataAddress           | "https://dev.adfs.la.gov/federationmetadata/2007-06/FederationMetadata.xml"  | string            | The IDP FederationMetadata. This can be either a URL or a file at the root of your project e.g '@"FederationMetadata.xml"' |
 
 
 
@@ -26,11 +45,11 @@
 | WantAssertionsSigned | true | boolean | Require the IDP to sign assertions. The default is 'false' |
 | RequireMessageSigned | false | boolean | Require the IDP to sign assertions. The default is 'false'. This must be set as well on IDP side. |  
 | CreateMetadataFile              | true                                                                 | boolean           | Have the middleware create the metadata file for you. The default is false.|
-| DefaultMetadataFileName  | "MyMetadataFilename"                                                  | string            | the default is "Metadata"
-| DefaultMetadataFolderLocation           | "MyPath" | string            | the default is "wwwroot" so it can be accessible via "https://[host name]/MyMetadataFilename.xml".
-| ForceAuthn| true| boolean| if you are requiring users to enter credentials into the IDP every time. Default is set to true
-| ServiceProvider.ApplicationProductionURL |"https://my.la.gov" | string | this will create a production signin endpoint on the IDP side. This will be used when deployed to your production site
-| ServiceProvider.ApplicationStageURL |"https://stage.my.la.gov" | string | this will create a stage signin endpoint on the IDP side. This will be used when deployed to your production site
+| DefaultMetadataFileName  | "MyMetadataFilename"                                                  | string            | the default is "Metadata" |
+| DefaultMetadataFolderLocation           | "MyPath" | string            | the default is "wwwroot" so it can be accessible via "https://[host name]/MyMetadataFilename.xml". |
+| ForceAuthn| true| boolean| if you are requiring users to enter credentials into the IDP every time. Default is set to true. |
+| ServiceProvider.ApplicationProductionURL |"https://my.la.gov" | string | this will create a production signin endpoint on the IDP side. This will be used when deployed to your production site |
+| ServiceProvider.ApplicationStageURL |"https://stage.my.la.gov" | string | this will create a stage signin endpoint on the IDP side. This will be used when deployed to your production site |
 | ServiceProvider.ServiceName |"My Test Site" | string | 
 | ServiceProvider.Language | "en-US" | string |
 
@@ -44,11 +63,11 @@ The middleware searches by default by serial number in the Trusted Root folder. 
 | ServiceProvider.CertificateStoreName                      | StoreName.Root                | enum              | Store name        |
 | ServiceProvider.CertificateStoreLocation                  | StoreLocation.LocalMachine    | enum              | Store location    |
 | ServiceProvider.CertificateStoreLocation.HashAlgorithm    | HashAlgorithmName.SHA256     | enum               |  Hash Algorithm Name |
-| ServiceProvider.CertificateIdentifierType                 |X509FindType.FindBySerialNumber| enum | the default is 'X509FindType.FindBySerialNumber'.
+| ServiceProvider.CertificateIdentifierType                 |X509FindType.FindBySerialNumber| enum | the default is 'X509FindType.FindBySerialNumber'.|
    
 
 
-# Usage
+## Usage
 
 1. Modify `ConfigureServices()` in Startup.cs
 ```cs

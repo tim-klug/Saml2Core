@@ -180,7 +180,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                                 {
                                     var cert = new X509Certificate2(Convert.FromBase64String(certificate));
                                     configuration.SigningKeys.Add(new X509SecurityKey(cert));
-                                    configuration.X509Certificate2 = new X509Certificate2(cert);
+                                    configuration.X509Certificate2.Add(new X509Certificate2(cert));
                                 }
                             }
                         }
