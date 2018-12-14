@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>ASP.NET Core middleware that enables an application to support the SAML2 authentication workflow. This middleware is not dependent on .Net Framework</Description>
+    <Description>ASP.NET Core middleware that enables an application to support the SAML2 authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It has been tested with ADFS and IdentityServer4 as well.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core;</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
     <Authors>Dina Heidar</Authors>
     <Company></Company>
-    <AssemblyVersion>1.1.4.0</AssemblyVersion>
-    <FileVersion>1.1.4.0</FileVersion>
+    <AssemblyVersion>1.1.5.0</AssemblyVersion>
+    <FileVersion>1.1.5.0</FileVersion>
     <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
