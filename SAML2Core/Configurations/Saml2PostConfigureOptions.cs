@@ -136,7 +136,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 {
                     var baseStageUri = new Uri(options.ServiceProvider.ApplicationStageURL);
                     options.AssertionURL_STG = new Uri(baseStageUri, options.CallbackPath).AbsoluteUri;
-                    options.SignOutURL_STG= new Uri(baseStageUri, options.SignOutPath).AbsoluteUri;
+                    options.SignOutURL_STG = new Uri(baseStageUri, options.SignOutPath).AbsoluteUri;
                 }
             }
             if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue))
@@ -207,20 +207,20 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     }
                 }
             }
-
-            //delete the metadata.xml if exists
-            string[] xmlList = Directory.GetFiles(options.DefaultMetadataFolderLocation, "*.xml");
-            foreach (string f in xmlList)
-            {
-                if (f == options.DefaultMetadataFolderLocation + "\\" + options.DefaultMetadataFileName + ".xml")
-                {
-                    File.Delete(f);
-                }
-            }
-
-            //overwrite or create metadata.xml if set to true
             if (options.CreateMetadataFile)
             {
+                //delete the metadata.xml if exists
+                string[] xmlList = Directory.GetFiles(options.DefaultMetadataFolderLocation, "*.xml");
+                foreach (string f in xmlList)
+                {
+                    if (f == options.DefaultMetadataFolderLocation + "\\" + options.DefaultMetadataFileName + ".xml")
+                    {
+                        File.Delete(f);
+                    }
+                }
+
+                //overwrite or create metadata.xml if set to true
+
                 IndexedEndpointType[] AssertionConsumerService = new IndexedEndpointType[3];
 
                 if (!string.IsNullOrEmpty(options.AssertionURL_PRD))
