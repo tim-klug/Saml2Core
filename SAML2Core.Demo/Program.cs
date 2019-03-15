@@ -18,7 +18,8 @@ namespace Saml2Authentication
                 .UseKestrel(options =>
                 {
                     // listen for HTTP
-                    options.Listen(IPAddress.Parse("127.0.0.1"), 5007);
+                    //options.Listen(IPAddress.Parse("127.0.0.1"), 5007);
+                    options.Listen(IPAddress.Parse("127.0.0.1"), 60548);
 
                     using (var store = new X509Store(StoreName.Root, StoreLocation.LocalMachine))
                     {
@@ -27,7 +28,8 @@ namespace Saml2Authentication
                         X509Certificate2 cert = certificates.Where(x => x.SerialNumber == "1E0000428DD2559EBA25D96B8600000000428D").SingleOrDefault();
 
                         // listen for HTTPS
-                        options.Listen(IPAddress.Parse("127.0.0.1"), 5008, listenOptions =>
+                        //options.Listen(IPAddress.Parse("127.0.0.1"), 5008, listenOptions =>
+                        options.Listen(IPAddress.Parse("127.0.0.1"), 44340, listenOptions =>
                         {
                             listenOptions.UseHttps(cert);
                         });

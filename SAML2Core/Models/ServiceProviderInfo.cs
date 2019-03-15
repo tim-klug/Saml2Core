@@ -53,6 +53,21 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </value>
         public string ApplicationStageURL { get; set; }
 
+        /// <summary>
+        /// Gets or sets the assertion consumer services.
+        /// </summary>
+        /// <value>
+        /// The assertion consumer services.
+        /// </value>
+        public IndexedEndpointType[] AssertionConsumerServices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the single logout services.
+        /// </summary>
+        /// <value>
+        /// The single logout services.
+        /// </value>
+        public EndpointType[] SingleLogoutServices { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the certificate store.

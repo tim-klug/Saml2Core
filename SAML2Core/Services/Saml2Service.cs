@@ -113,7 +113,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Destination = singleSignOnService.Location.ToString(),
                 ProtocolBinding = singleSignOnService.Binding.ToString(),
                 IssueInstant = DateTime.UtcNow,
-                AssertionConsumerServiceURL = assertionConsumerServiceUrl
+                AssertionConsumerServiceURL = assertionConsumerServiceUrl                
                 //RequestedAuthnContext = new RequestedAuthnContextType()
                 //{
                 //    Comparison = AuthnContextComparisonType.exact,
@@ -181,12 +181,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             LogoutRequest logoutRequest = new LogoutRequest()
             {
-                ID = logoutRequestId,
+                ID = logoutRequestId,               
                 Issuer = entityID,
                 Version = Saml2Constants.Version,
                 Reason = Saml2Constants.Reasons.User,
                 SessionIndex = new string[] { sessionIndex },
-                Destination = singleLogoutService.Location.ToString(),
+                Destination = singleLogoutService.Location.ToString(),                
                 IssueInstant = DateTime.UtcNow,
                 Item = new NameIDType()
                 {
@@ -194,7 +194,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     NameQualifier = options.NameIDType.NameQualifier,
                     SPProvidedID = options.NameIDType.SPProvidedID,
                     SPNameQualifier = options.NameIDType.SPNameQualifier,
-                    Value = options.NameIDType.Value
+                    Value = options.NameIDType.Value                    
                 }
             };
 
@@ -385,7 +385,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             string serialNumber = cert.SerialNumber;
             //bool verified = cert != null && signedXmlDoc.CheckSignature(cert, false);
             //var t= signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), false);
-            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), false);
+            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber),false);
         }
 
         /// <summary>

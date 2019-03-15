@@ -128,23 +128,24 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 properties.RedirectUri = CurrentUri;
             }
 
-            string assertionHostUrl = new Uri(CurrentUri).Host;
-            string sendAssertionTo = string.Empty;
-            if (!string.IsNullOrEmpty(Options.AssertionURL_PRD))
-            {
-                string assertionHostPrdUrl = new Uri(Options.AssertionURL_PRD).Host;
-                sendAssertionTo = assertionHostUrl == assertionHostPrdUrl ? Options.AssertionURL_PRD : sendAssertionTo;
-            }
-            if (!string.IsNullOrEmpty(Options.AssertionURL_DEV))
-            {
-                string assertionHostDevUrl = new Uri(Options.AssertionURL_DEV).Host;
-                sendAssertionTo = assertionHostUrl == assertionHostDevUrl ? Options.AssertionURL_DEV : sendAssertionTo;
-            }
-            if (!string.IsNullOrEmpty(Options.AssertionURL_STG))
-            {
-                string assertionHostStgUrl = new Uri(Options.AssertionURL_STG).Host;
-                sendAssertionTo = assertionHostUrl == assertionHostStgUrl ? Options.AssertionURL_STG : sendAssertionTo;
-            }
+            //string assertionHostUrl = new Uri(CurrentUri).Scheme + "://" + new Uri(CurrentUri).Authority;
+            var sendAssertionTo = new Uri(new Uri(CurrentUri), Options.CallbackPath).AbsoluteUri;
+            //string sendAssertionTo = assertionHostUrl;
+            //if (!string.IsNullOrEmpty(Options.AssertionURL_PRD))
+            //{
+            //    string assertionHostPrdUrl = new Uri(Options.AssertionURL_PRD).Host;
+            //    sendAssertionTo = assertionHostUrl == assertionHostPrdUrl ? Options.AssertionURL_PRD : sendAssertionTo;
+            //}
+            //if (!string.IsNullOrEmpty(Options.AssertionURL_DEV))
+            //{
+            //    string assertionHostDevUrl = new Uri(Options.AssertionURL_DEV).Host;
+            //    sendAssertionTo = assertionHostUrl == assertionHostDevUrl ? Options.AssertionURL_DEV : sendAssertionTo;
+            //}
+            //if (!string.IsNullOrEmpty(Options.AssertionURL_STG))
+            //{
+            //    string assertionHostStgUrl = new Uri(Options.AssertionURL_STG).Host;
+            //    sendAssertionTo = assertionHostUrl == assertionHostStgUrl ? Options.AssertionURL_STG : sendAssertionTo;
+            //}
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string authnRequestId = "id" + Guid.NewGuid().ToString("N");
@@ -204,7 +205,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             var form = await Request.ReadFormAsync();
             var response = form[Saml2Constants.Parameters.SamlResponse];
-            var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();          
+            var relayState = form[Saml2Constants.Parameters.RelayState].ToString()?.DeflateDecompress();
 
             AuthenticationProperties authenticationProperties = Options.StateDataFormat.Unprotect(relayState);
 

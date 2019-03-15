@@ -27,6 +27,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Tokens.Saml2;
+using SamlCore.AspNetCore.Authentication.Saml2.Metadata;
 using System;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -44,6 +45,8 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The saml2 security token handler
         /// </summary>
         volatile private Saml2SecurityTokenHandler _saml2SecurityTokenHandler;
+        //private readonly IHttpContextAccessor _httpContextAccessor;
+
 
         /// <summary>
         /// The token validation parameters
@@ -74,8 +77,26 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 CertificateIdentifierType = X509FindType.FindBySerialNumber,
                 CertificateStoreName = StoreName.Root,
                 CertificateStoreLocation = StoreLocation.LocalMachine,
-                HashAlgorithm = HashAlgorithmName.SHA256
+                HashAlgorithm = HashAlgorithmName.SHA256,
+                AssertionConsumerServices = new IndexedEndpointType[]
+                {
+                    new IndexedEndpointType()
+                    {
+                        Binding = ProtocolBindings.HTTP_Post, //must only allow POST
+                        index = 0,
+                        isDefault = true,
+                        isDefaultSpecified = true
+                    }
+                },
+                SingleLogoutServices = new EndpointType[]
+                {
+                    new EndpointType()
+                    {
+                        Binding = ProtocolBindings.HTTP_Post //must only allow Post back to sp                             
+                    }
+                }
             };
+
             WantAssertionsSigned = false;
             RequireMessageSigned = false;
             RequestIdCookieLifetime = TimeSpan.FromMinutes(10);
@@ -88,7 +109,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             };
             Events = new Saml2Events();
             AllowUnsolicitedLogins = false;
-        }        
+        }
         /// <summary>
         /// Gets or sets the assertion URL. The default value is "/saml2-signin"
         /// This URL is used by the Idp to POST back to the SAML assertion/token.
@@ -287,7 +308,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         ///   <c>true</c> if this instance has certificate; otherwise, <c>false</c>.
         /// </value>
         internal bool hasCertificate { get; set; }
-       
+
         /// <summary>
         /// Gets or sets a value indicating whether authentication is required.
         /// Default value is set to true
