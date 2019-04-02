@@ -360,23 +360,25 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Options.Configuration = await Options.ConfigurationManager.GetConfigurationAsync(Context.RequestAborted);
             }
 
-            string signoutHostUrl = new Uri(CurrentUri).Host;
-            string sendSignoutTo = string.Empty;
-            if (!string.IsNullOrEmpty(Options.SignOutURL_PRD))
-            {
-                string signoutHostPrdUrl = new Uri(Options.SignOutURL_PRD).Host;
-                sendSignoutTo = signoutHostUrl == signoutHostPrdUrl ? Options.SignOutURL_PRD : string.Empty;
-            }
-            if (!string.IsNullOrEmpty(Options.SignOutURL_DEV))
-            {
-                string signoutHostDevUrl = new Uri(Options.SignOutURL_DEV).Host;
-                sendSignoutTo = signoutHostUrl == signoutHostDevUrl ? Options.SignOutURL_DEV : string.Empty;
-            }
-            if (!string.IsNullOrEmpty(Options.SignOutURL_STG))
-            {
-                string signoutHostStgUrl = new Uri(Options.SignOutURL_STG).Host;
-                sendSignoutTo = signoutHostUrl == signoutHostStgUrl ? Options.AssertionURL_STG : string.Empty;
-            }
+            //string signoutHostUrl = new Uri(CurrentUri).Host;
+
+            string sendSignoutTo = new Uri(new Uri(CurrentUri), Options.SignOutPath).AbsoluteUri;
+            //string sendSignoutTo = string.Empty;
+            //if (!string.IsNullOrEmpty(Options.SignOutURL_PRD))
+            //{
+            //    string signoutHostPrdUrl = new Uri(Options.SignOutURL_PRD).Host;
+            //    sendSignoutTo = signoutHostUrl == signoutHostPrdUrl ? Options.SignOutURL_PRD : string.Empty;
+            //}
+            //if (!string.IsNullOrEmpty(Options.SignOutURL_DEV))
+            //{
+            //    string signoutHostDevUrl = new Uri(Options.SignOutURL_DEV).Host;
+            //    sendSignoutTo = signoutHostUrl == signoutHostDevUrl ? Options.SignOutURL_DEV : string.Empty;
+            //}
+            //if (!string.IsNullOrEmpty(Options.SignOutURL_STG))
+            //{
+            //    string signoutHostStgUrl = new Uri(Options.SignOutURL_STG).Host;
+            //    sendSignoutTo = signoutHostUrl == signoutHostStgUrl ? Options.AssertionURL_STG : string.Empty;
+            //}
 
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string logoutRequestId = "id" + Guid.NewGuid().ToString("N");
