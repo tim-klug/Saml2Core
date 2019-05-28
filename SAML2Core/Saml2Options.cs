@@ -72,9 +72,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             CreateMetadataFile = false;
             ServiceProvider = new ServiceProviderInfo()
             {
-                CertificateIdentifierType = X509FindType.FindBySerialNumber,
-                CertificateStoreName = StoreName.Root,
-                CertificateStoreLocation = StoreLocation.LocalMachine,
                 HashAlgorithm = HashAlgorithmName.SHA256,
                 AssertionConsumerServices = new IndexedEndpointType[]
                 {

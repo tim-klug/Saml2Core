@@ -27,13 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\X509Certificate2Extension.cs" />
     <Compile Remove="Models\Provider.cs" />
     <Compile Remove="Models\SigningCertificates.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Extensions\X509Certificate2Extension.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Logging;
+using SamlCore.AspNetCore.Authentication.Saml2;
 using SamlCore.AspNetCore.Authentication.Saml2.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -64,8 +65,8 @@ namespace Saml2Authentication
                 //options.DefaultMetadataFolderLocation = "MyPath";
 
                 // (REQUIRED IF) signing AuthnRequest with Sp certificate to Idp. The value here is the certifcate serial number.
-                options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
-                options.ServiceProvider.CertificateStoreName = StoreName.My;
+                //options.ServiceProvider.SigningCertificateX509TypeValue = Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"]; //your certifcate serial number (default type which can be chnaged by ) that is in your certficate store
+                //options.ServiceProvider.CertificateStoreName = StoreName.My;
                 //optional if you want the search for the Sp certificate by somethign else other than SerialNumber. The default is serial number. 
                 //options.ServiceProvider.CertificateIdentifierType = X509FindType.FindBySerialNumber; // the default is 'X509FindType.FindBySerialNumber'. Change value of 'options.ServiceProvider.SigningCertificateX509TypeValue' if this changes
 
@@ -73,6 +74,14 @@ namespace Saml2Authentication
                 options.ForceAuthn = true;
                 options.WantAssertionsSigned = false;
                 options.RequireMessageSigned = true;
+                options.ServiceProvider.X509Certificate2 = new X509Certificate2(@"democert.pfx", "1234");
+                //if you want to search in cert store
+                //options.ServiceProvider.X509Certificate2 = X509Certificate2Ext.GetX509Certificate2(
+                //    Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"],
+                //    StoreName.My,
+                //    StoreLocation.LocalMachine,
+                //    X509FindType.FindBySerialNumber
+                //    );
 
                 // Service Provider Properties (optional) - These set the appropriate tags in the metadata.xml file
                 options.ServiceProvider.ServiceName = "My Test Site";

@@ -142,75 +142,38 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                         if (!appProductionURLresult)
                         {
                             throw new InvalidOperationException("SingleLogoutService is not a valid URL.");
-                        }
-                        //var request = _httpContextAccessor.HttpContext.Request;
-                        //singleLogoutService.Location = singleLogoutService.Location + options.SignOutPath;
-                        //options.SignOutURL_DEV = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
+                        }                      
                     }
                 }
             }
-
-            //if (options.ServiceProvider.ApplicationProductionURL != null)
-            //{
-            //    Uri uriAppUrlResult;
-            //    bool appProductionURLresult = Uri.TryCreate(options.ServiceProvider.ApplicationProductionURL, UriKind.Absolute, out uriAppUrlResult)
-            //        && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
-
-            //    if (!appProductionURLresult)
-            //    {
-            //        throw new InvalidOperationException("ApplicationProductionURL is not a valid URL.");
-            //    }
-            //    else
-            //    {
-            //        var baseProductionUri = new Uri(options.ServiceProvider.ApplicationProductionURL);
-            //        options.AssertionURL_PRD = new Uri(baseProductionUri, options.CallbackPath).AbsoluteUri;
-            //        options.SignOutURL_PRD = new Uri(baseProductionUri, options.SignOutPath).AbsoluteUri;
-            //    }
-            //}
-
-            //if (options.ServiceProvider.ApplicationStageURL != null)
-            //{
-            //    Uri uriAppUrlResult;
-            //    bool appStageURLresult = Uri.TryCreate(options.ServiceProvider.ApplicationStageURL, UriKind.Absolute, out uriAppUrlResult)
-            //        && (uriAppUrlResult.Scheme == Uri.UriSchemeHttp || uriAppUrlResult.Scheme == Uri.UriSchemeHttps);
-
-            //    if (!appStageURLresult)
-            //    {
-            //        throw new InvalidOperationException("ApplicationStageURL is not a valid URL.");
-            //    }
-            //    else
-            //    {
-            //        var baseStageUri = new Uri(options.ServiceProvider.ApplicationStageURL);
-            //        options.AssertionURL_STG = new Uri(baseStageUri, options.CallbackPath).AbsoluteUri;
-            //        options.SignOutURL_STG = new Uri(baseStageUri, options.SignOutPath).AbsoluteUri;
-            //    }
-            //}
-            if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue))
+            if(options.ServiceProvider.X509Certificate2 != null)
             {
-                using (var store = new X509Store(options.ServiceProvider.CertificateStoreName, options.ServiceProvider.CertificateStoreLocation))
-                {
-                    store.Open(OpenFlags.ReadOnly);
-                    X509Certificate2Collection collection = store.Certificates.Find(options.ServiceProvider.CertificateIdentifierType, options.ServiceProvider.SigningCertificateX509TypeValue, true);
-                    store.Close();
-                    if (collection.Count == 0)
-                    {
-                        throw new InvalidOperationException("Service Provider certificate could not be found.");
-                    }
-                    if (collection.Count > 1)
-                    {
-                        throw new InvalidOperationException("Multiple Service Provider certificates were found, must only provide one.");
-                    }
-                    options.ServiceProvider.X509Certificate2 = collection[0];
-                    if (options.ServiceProvider.X509Certificate2.PrivateKey == null)
-                    {
-                        throw new InvalidOperationException("The certificate for this service providerhas no private key.");
-                    }
-                    options.hasCertificate = true;
-                }
+                options.hasCertificate = true;
             }
-            //var request = _httpContextAccessor.HttpContext.Request;
-            ////options.AssertionURL_DEV = request.Scheme + "://" + request.Host.Value + options.CallbackPath;
-            //options.SignOutURL_DEV = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
+
+            //if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue) && options.ServiceProvider != null)
+            //{
+            //    using (var store = new X509Store(options.ServiceProvider.CertificateStoreName, options.ServiceProvider.CertificateStoreLocation))
+            //    {
+            //        store.Open(OpenFlags.ReadOnly);
+            //        X509Certificate2Collection collection = store.Certificates.Find(options.ServiceProvider.CertificateIdentifierType, options.ServiceProvider.SigningCertificateX509TypeValue, true);
+            //        store.Close();
+            //        if (collection.Count == 0)
+            //        {
+            //            throw new InvalidOperationException("Service Provider certificate could not be found.");
+            //        }
+            //        if (collection.Count > 1)
+            //        {
+            //            throw new InvalidOperationException("Multiple Service Provider certificates were found, must only provide one.");
+            //        }
+            //        options.ServiceProvider.X509Certificate2 = collection[0];
+            //        if (options.ServiceProvider.X509Certificate2.PrivateKey == null)
+            //        {
+            //            throw new InvalidOperationException("The certificate for this service providerhas no private key.");
+            //        }
+            //        options.hasCertificate = true;
+            //    }
+            //}
 
             if (options.Backchannel == null)
             {
@@ -268,69 +231,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 //overwrite or create metadata.xml if set to true
                 IndexedEndpointType[] AssertionConsumerService = options.ServiceProvider.AssertionConsumerServices;
                 EndpointType[] SingleLogoutServices = options.ServiceProvider.SingleLogoutServices;
-                //IndexedEndpointType[] AssertionConsumerService = new IndexedEndpointType[3];
-
-                //if (!string.IsNullOrEmpty(options.AssertionURL_PRD))
-                //{
-                //    AssertionConsumerService[0] = new IndexedEndpointType
-                //    {
-                //        Location = options.AssertionURL_PRD,
-                //        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
-                //        index = 0,
-                //        isDefault = true,
-                //        isDefaultSpecified = true
-                //    };
-                //}
-                //if (!string.IsNullOrEmpty(options.AssertionURL_STG))
-                //{
-                //    AssertionConsumerService[1] = new IndexedEndpointType
-                //    {
-                //        Location = options.AssertionURL_STG,
-                //        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
-                //        index = 1,
-                //        isDefault = false,
-                //        isDefaultSpecified = true
-                //    };
-                //}
-                //if (!string.IsNullOrEmpty(options.AssertionURL_DEV) && options.AssertionURL_DEV != options.AssertionURL_PRD)
-                //{
-                //    AssertionConsumerService[2] = new IndexedEndpointType
-                //    {
-                //        Location = options.AssertionURL_DEV,
-                //        Binding = options.AssertionConsumerServiceProtocolBinding, //must only allow POST
-                //        index = 2,
-                //        isDefault = false,
-                //        isDefaultSpecified = true
-                //    };
-                //}
-
-
-                //EndpointType[] SingleLogoutService = new EndpointType[3];
-                //if (!string.IsNullOrEmpty(options.AssertionURL_PRD))
-                //{
-                //    SingleLogoutService[0] = new EndpointType
-                //    {
-                //        Location = options.SignOutURL_PRD,
-                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect                        
-                //    };
-                //}
-                //if (!string.IsNullOrEmpty(options.AssertionURL_STG))
-                //{
-                //    SingleLogoutService[1] = new EndpointType
-                //    {
-                //        Location = options.SignOutURL_STG,
-                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect
-                //    };
-                //}
-                //if (!string.IsNullOrEmpty(options.AssertionURL_DEV))
-                //{
-                //    SingleLogoutService[2] = new EndpointType
-                //    {
-                //        Location = options.SignOutURL_DEV,
-                //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Redirect
-                //    };
-                //}
-
+               
                 Metadata.KeyDescriptorType[] KeyDescriptor = null;
                 if (options.hasCertificate)
                 {

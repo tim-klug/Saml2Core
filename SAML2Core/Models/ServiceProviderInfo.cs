@@ -56,28 +56,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </value>
         public EndpointType[] SingleLogoutServices { get; set; }
 
-
-        /// <summary>
-        /// Gets or sets the name of the certificate store.
-        /// </summary>
-        /// <value>
-        /// The name of the certificate store.
-        /// </value>
-        public StoreName CertificateStoreName { get; set; }
-        /// <summary>
-        /// Gets or sets the certificate store location.
-        /// </summary>
-        /// <value>
-        /// The certificate store location.
-        /// </value>
-        public StoreLocation CertificateStoreLocation { get; set; }
-        /// <summary>
-        /// Gets or sets the type of the certificate identifier.
-        /// </summary>
-        /// <value>
-        /// The type of the certificate identifier.
-        /// </value>
-        public X509FindType CertificateIdentifierType { get; set; }
         /// <summary>
         /// Gets or sets the signing certificate X509 type value.
         /// </summary>
@@ -85,6 +63,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The signing certificate X509 type value.
         /// </value>
         public string SigningCertificateX509TypeValue { get; set; }
+
         /// <summary>
         /// Gets or sets the X509 certificate2.
         /// </summary>
