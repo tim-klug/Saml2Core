@@ -41,15 +41,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
     public class Saml2Service : ISaml2Service
     {
         /// <summary>
-        /// The triple DES
-        /// </summary>
-        private static int[] TripleDes = { "http://www.w3.org/2001/04/xmlenc#tripledes-cbc".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#kw-tripledes".GetHashCode() };
-        /// <summary>
-        /// The aes
-        /// </summary>
-        private static int[] Aes = { "http://www.w3.org/2001/04/xmlenc#aes128-cbc".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#aes192-cbc".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#aes256-cbc".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#kw-aes128".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#kw-aes192".GetHashCode(), "http://www.w3.org/2001/04/xmlenc#kw-aes256".GetHashCode() };
-
-        /// <summary>
         /// Gets the service provider certficate.
         /// </summary>
         /// <param name="options">The options.</param>
@@ -113,14 +104,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 Destination = singleSignOnService.Location.ToString(),
                 ProtocolBinding = singleSignOnService.Binding.ToString(),
                 IssueInstant = DateTime.UtcNow,
-                AssertionConsumerServiceURL = assertionConsumerServiceUrl                
-                //RequestedAuthnContext = new RequestedAuthnContextType()
-                //{
-                //    Comparison = AuthnContextComparisonType.exact,
-                //    ItemsElementName = new ItemsChoiceType7[] { ItemsChoiceType7.AuthnContextClassRef },
-                //    ComparisonSpecified = true,
-                //    Items = new[] { Saml2Constants.AuthnContextClassRefTypes.PasswordProtectedTransport }
-                //}
+                AssertionConsumerServiceURL = assertionConsumerServiceUrl               
             };
 
             string singleSignOnUrl = options.Configuration.SingleSignOnServices.FirstOrDefault().Location;
@@ -181,12 +165,12 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             LogoutRequest logoutRequest = new LogoutRequest()
             {
-                ID = logoutRequestId,               
+                ID = logoutRequestId,
                 Issuer = entityID,
                 Version = Saml2Constants.Version,
                 Reason = Saml2Constants.Reasons.User,
                 SessionIndex = new string[] { sessionIndex },
-                Destination = singleLogoutService.Location.ToString(),                
+                Destination = singleLogoutService.Location.ToString(),
                 IssueInstant = DateTime.UtcNow,
                 Item = new NameIDType()
                 {
@@ -194,7 +178,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                     NameQualifier = options.NameIDType.NameQualifier,
                     SPProvidedID = options.NameIDType.SPProvidedID,
                     SPNameQualifier = options.NameIDType.SPNameQualifier,
-                    Value = options.NameIDType.Value                    
+                    Value = options.NameIDType.Value
                 }
             };
 
@@ -279,25 +263,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         }
 
         /// <summary>
-        /// Creates the unique identifier.
-        /// </summary>
-        /// <param name="length">The length.</param>
-        /// <returns></returns>
-        private static string CreateUniqueId(int length = 32)
-        {
-            var bytes = new byte[length];
-            using (var randomNumberGenerator = RandomNumberGenerator.Create())
-            {
-                randomNumberGenerator.GetBytes(bytes);
-                var hex = new StringBuilder(bytes.Length * 2);
-                foreach (var b in bytes)
-                    hex.AppendFormat("{0:x2}", b);
-
-                return hex.ToString();
-            }
-        }
-
-        /// <summary>
         /// Determines whether [is logout request] [the specified request].
         /// </summary>
         /// <param name="request">The request.</param>
@@ -371,21 +336,18 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         public bool ValidateX509CertificateSignature(XmlDocument xmlDoc, Saml2Options options)
         {
             XmlNodeList XMLSignatures = xmlDoc.GetElementsByTagName(Saml2Constants.Parameters.Signature, Saml2Constants.Namespaces.DsNamespace);
-            //XmlNodeList XMLSignatures = xnlDoc.GetElementsByTagName("Signature", "http://www.w3.org/2000/09/xmldsig#");
 
             // Checking If the Response or the Assertion has been signed once and only once.
             if (XMLSignatures.Count != 1) return false;
 
             var signedXmlDoc = new SignedXml(xmlDoc);
             signedXmlDoc.LoadXml((XmlElement)XMLSignatures[0]);
-            
+
             //IDP might have multiple siing certs. Get the correct one and check it
             KeyInfoX509Data x509data = signedXmlDoc.Signature.KeyInfo.OfType<KeyInfoX509Data>().First();
             X509Certificate2 cert = (X509Certificate2)x509data.Certificates[0];
             string serialNumber = cert.SerialNumber;
-            //bool verified = cert != null && signedXmlDoc.CheckSignature(cert, false);
-            //var t= signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), false);
-            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber),false);
+            return signedXmlDoc.CheckSignature(GetIdentityProviderCertficate(options, serialNumber), options.VerifySignatureOnly);
         }
 
         /// <summary>

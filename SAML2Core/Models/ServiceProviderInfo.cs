@@ -20,6 +20,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 using SamlCore.AspNetCore.Authentication.Saml2.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -40,20 +41,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         public string EntityId { get; set; }
 
         /// <summary>
-        /// Gets or sets the application production URL.
-        /// </summary>
-        /// <value>
-        /// The application production URL.
-        /// </value>
-        public string ApplicationProductionURL { get; set; }        /// <summary>
-        /// Gets or sets the application stage URL.
-        /// </summary>
-        /// <value>
-        /// The application stage URL.
-        /// </value>
-        public string ApplicationStageURL { get; set; }
-
-        /// <summary>
         /// Gets or sets the assertion consumer services.
         /// </summary>
         /// <value>
@@ -68,6 +55,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The single logout services.
         /// </value>
         public EndpointType[] SingleLogoutServices { get; set; }
+
 
         /// <summary>
         /// Gets or sets the name of the certificate store.
@@ -104,13 +92,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The X509 certificate2.
         /// </value>
         public X509Certificate2 X509Certificate2 { get; set; }
+
         /// <summary>
         /// Gets or sets the hash algorithm. ADFS 2012 uses SHA1 or SHA256
         /// </summary>
         /// <value>
         /// The hash algorithm.
         /// </value>
-        public HashAlgorithmName HashAlgorithm {get;set;}
+        public HashAlgorithmName HashAlgorithm { get; set; }
         /// <summary>
         /// Gets or sets the name of the service provider name. This is is used the SP metadata file. This is optional.
         /// </summary>

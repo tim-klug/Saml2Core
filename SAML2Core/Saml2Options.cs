@@ -45,9 +45,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The saml2 security token handler
         /// </summary>
         volatile private Saml2SecurityTokenHandler _saml2SecurityTokenHandler;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
-
-
+       
         /// <summary>
         /// The token validation parameters
         /// </summary>
@@ -102,6 +100,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             RequestIdCookieLifetime = TimeSpan.FromMinutes(10);
             RequestCookieId = new RequestPathBaseCookieBuilder()
             {
+                IsEssential = CookieConsentNeeded,
                 HttpOnly = true,
                 SameSite = SameSiteMode.None,
                 SecurePolicy = CookieSecurePolicy.SameAsRequest,
@@ -110,41 +109,26 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             Events = new Saml2Events();
             AllowUnsolicitedLogins = false;
         }
-        /// <summary>
-        /// Gets or sets the assertion URL. The default value is "/saml2-signin"
-        /// This URL is used by the Idp to POST back to the SAML assertion/token.
-        /// </summary>
-        /// <value>
-        /// The assertion URL.
-        /// </value>
-        internal string AssertionURL_PRD { get; set; }
 
         /// <summary>
-        /// Gets or sets the assertion URL dev.
+        /// Gets or sets the bool responsible for signature validation
+        /// true to verify the signature only; false to verify both the signature and certificate.
+        /// The default value is set to "false".
         /// </summary>
         /// <value>
-        /// The assertion URL dev.
+        /// <c>false</c> if [verify signature only]; otherwise, <c>true</c>.
         /// </value>
-        internal string AssertionURL_DEV { get; set; }
 
+        public bool VerifySignatureOnly { get; set; } = false;
         /// <summary>
-        /// Gets or sets the assertion URL STG.
+        /// Gets or sets the cookie consent as essential or not
+        /// It overrdies the Cookie policy set.
+        /// This is needed when signign in. the default value is "true".
         /// </summary>
         /// <value>
-        /// The assertion URL STG.
+        /// <c>true</c> if [cookie consent needed]; otherwise, <c>false</c>.
         /// </value>
-        internal string AssertionURL_STG { get; set; }
-
-        /// <summary>
-        /// Gets or sets the sign out URL. The default value is "/signedout"
-        /// This URL is used by the Idp to POST back to after it logs the user out of the Idp session.
-        /// </summary>
-        /// <value>
-        /// The sign out URL.
-        /// </value>
-        internal string SignOutURL_DEV { get; set; }
-        internal string SignOutURL_STG { get; set; }
-        internal string SignOutURL_PRD { get; set; }
+        public bool CookieConsentNeeded { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the default redirect URL. The default value is "/"
