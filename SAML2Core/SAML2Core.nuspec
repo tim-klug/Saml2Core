@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Saml2Core</id>
-    <version>1.1.9.0</version>
+    <version>2.0.0.0</version>
     <title>Saml2 for .Net Core</title>
     <authors>Dina Heidar</authors>
     <owners>Office Of Technology Serives, State of Louisiana</owners>
