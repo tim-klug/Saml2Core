@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Saml2Core</id>
-    <version>2.0.0.0</version>
+    <version>2.0.1.0</version>
     <title>Saml2 for .Net Core</title>
     <authors>Dina Heidar</authors>
     <owners>Office Of Technology Serives, State of Louisiana</owners>
@@ -15,6 +15,7 @@
     <tags>saml .net core adfs authentication</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
+        <dependency id="Cryptography.X509Certificates.Extension" version="1.0.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.AspNetCore.Authentication" version="2.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.AspNetCore.Authentication.Cookies" version="2.1.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.IdentityModel.Protocols" version="5.2.4" exclude="Build,Analyzers" />
