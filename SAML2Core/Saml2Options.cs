@@ -30,7 +30,6 @@ using Microsoft.IdentityModel.Tokens.Saml2;
 using SamlCore.AspNetCore.Authentication.Saml2.Metadata;
 using System;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using static SamlCore.AspNetCore.Authentication.Saml2.Saml2Constants;
 
 namespace SamlCore.AspNetCore.Authentication.Saml2
@@ -67,6 +66,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             ForceAuthn = true;
             NameIDType = new NameIDType();
             IsPassive = false;
+            VerifySignatureOnly = true;
             DefaultMetadataFolderLocation = "wwwroot";
             DefaultMetadataFileName = "Metadata";
             CreateMetadataFile = false;
@@ -110,13 +110,13 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// <summary>
         /// Gets or sets the bool responsible for signature validation
         /// true to verify the signature only; false to verify both the signature and certificate.
-        /// The default value is set to "false".
+        /// The default value is set to "true".
         /// </summary>
         /// <value>
         /// <c>false</c> if [verify signature only]; otherwise, <c>true</c>.
         /// </value>
 
-        public bool VerifySignatureOnly { get; set; } = false;
+        public bool VerifySignatureOnly { get; set; }
         /// <summary>
         /// Gets or sets the cookie consent as essential or not
         /// It overrdies the Cookie policy set.

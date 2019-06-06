@@ -28,7 +28,6 @@ using SamlCore.AspNetCore.Authentication.Saml2.Metadata;
 using System;
 using System.IO;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
@@ -121,7 +120,6 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                         {
                             throw new InvalidOperationException("AssertionConsumerService is not a valid URL.");
                         }
-                        //options.SignOutURL_DEV = request.Scheme + "://" + request.Host.Value + options.SignOutPath;
                     }
                 }
             }
@@ -142,38 +140,14 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                         if (!appProductionURLresult)
                         {
                             throw new InvalidOperationException("SingleLogoutService is not a valid URL.");
-                        }                      
+                        }
                     }
                 }
             }
-            if(options.ServiceProvider.X509Certificate2 != null)
+            if (options.ServiceProvider.X509Certificate2 != null)
             {
                 options.hasCertificate = true;
             }
-
-            //if (!string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue) && options.ServiceProvider != null)
-            //{
-            //    using (var store = new X509Store(options.ServiceProvider.CertificateStoreName, options.ServiceProvider.CertificateStoreLocation))
-            //    {
-            //        store.Open(OpenFlags.ReadOnly);
-            //        X509Certificate2Collection collection = store.Certificates.Find(options.ServiceProvider.CertificateIdentifierType, options.ServiceProvider.SigningCertificateX509TypeValue, true);
-            //        store.Close();
-            //        if (collection.Count == 0)
-            //        {
-            //            throw new InvalidOperationException("Service Provider certificate could not be found.");
-            //        }
-            //        if (collection.Count > 1)
-            //        {
-            //            throw new InvalidOperationException("Multiple Service Provider certificates were found, must only provide one.");
-            //        }
-            //        options.ServiceProvider.X509Certificate2 = collection[0];
-            //        if (options.ServiceProvider.X509Certificate2.PrivateKey == null)
-            //        {
-            //            throw new InvalidOperationException("The certificate for this service providerhas no private key.");
-            //        }
-            //        options.hasCertificate = true;
-            //    }
-            //}
 
             if (options.Backchannel == null)
             {
@@ -231,7 +205,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 //overwrite or create metadata.xml if set to true
                 IndexedEndpointType[] AssertionConsumerService = options.ServiceProvider.AssertionConsumerServices;
                 EndpointType[] SingleLogoutServices = options.ServiceProvider.SingleLogoutServices;
-               
+
                 Metadata.KeyDescriptorType[] KeyDescriptor = null;
                 if (options.hasCertificate)
                 {
@@ -284,19 +258,11 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                             protocolSupportEnumeration = new []{Saml2Constants.Namespaces.Protocol },
                             AuthnRequestsSignedSpecified = true,
                             AuthnRequestsSigned = options.hasCertificate,
-                            //(string.IsNullOrEmpty(options.ServiceProvider.SigningCertificateX509TypeValue)? false:true),
                             WantAssertionsSignedSpecified= true,
                             WantAssertionsSigned=true,
                             KeyDescriptor= KeyDescriptor,
                             SingleLogoutService = SingleLogoutServices,
-                            //SingleLogoutService= SingleLogoutService,
-                            //SingleLogoutService = new EndpointType[]{
-                            //    new EndpointType
-                            //    {
-                            //        Location = options.SignOutURL_DEV,
-                            //        Binding = options.SingleLogoutServiceProtocolBinding //must only allow Post back to sp
-                            //    }
-                            //},
+                            
                             AssertionConsumerService = AssertionConsumerService,
                             AttributeConsumingService =  new AttributeConsumingServiceType[]
                             {
