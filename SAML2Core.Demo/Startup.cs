@@ -71,11 +71,11 @@ namespace Saml2Authentication
                 options.ServiceProvider.X509Certificate2 = new X509Certificate2(@"democert.pfx", "1234");
 
                 //if you want to search in cert store - can be used for production
-                options.ServiceProvider.X509Certificate2 = new Cryptography.X509Certificates.Extension.X509Certificate2(
-                    Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"],
-                    StoreName.My,
-                    StoreLocation.LocalMachine,
-                    X509FindType.FindBySerialNumber);
+                //options.ServiceProvider.X509Certificate2 = new Cryptography.X509Certificates.Extension.X509Certificate2(
+                //    Configuration["AppConfiguration:ServiceProvider:CertificateSerialNumber"],
+                //    StoreName.My,
+                //    StoreLocation.LocalMachine,
+                //    X509FindType.FindBySerialNumber);
 
                 // Force Authentication (optional) - Is authentication required?
                 options.ForceAuthn = true;
