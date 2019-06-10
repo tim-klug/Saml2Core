@@ -259,10 +259,10 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                             AuthnRequestsSignedSpecified = true,
                             AuthnRequestsSigned = options.hasCertificate,
                             WantAssertionsSignedSpecified= true,
-                            WantAssertionsSigned=true,
+                            WantAssertionsSigned=options.WantAssertionsSigned,
                             KeyDescriptor= KeyDescriptor,
                             SingleLogoutService = SingleLogoutServices,
-                            
+
                             AssertionConsumerService = AssertionConsumerService,
                             AttributeConsumingService =  new AttributeConsumingServiceType[]
                             {

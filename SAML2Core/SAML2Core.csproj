@@ -7,12 +7,12 @@
     <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.8</Version>
+    <Version>2.0.6</Version>
     <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
     <Authors>Dina Heidar</Authors>
     <Company></Company>
-    <AssemblyVersion>1.1.8.0</AssemblyVersion>
-    <FileVersion>1.1.8.0</FileVersion>
+    <AssemblyVersion>2.0.6.0</AssemblyVersion>
+    <FileVersion>2.0.6.0</FileVersion>
     <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
