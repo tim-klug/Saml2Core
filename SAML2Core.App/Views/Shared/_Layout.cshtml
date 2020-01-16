@@ -25,6 +25,27 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Context.User.Identity.Name != null)
+                        {
+                            <li class="text-white">
+                                <a href="#">@Context.User.Identity.Name</a>
+                            </li>
+                            <li>
+                                <form asp-controller="Account" asp-action="Logout" method="post">
+                                    <button type="submit" class="btn btn-link" name="provider" value="Saml2">Sign out</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <form asp-controller="Account" asp-action="ExternalLogin" method="post">
+                                    <button type="submit" class="btn btn-link" name="provider" value="Saml2">Sign In</button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

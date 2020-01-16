@@ -7,12 +7,12 @@
     <PackageTags>authentication;security;saml2;.net core 2.1, .net core 2.2, saml2 core, saml2.core, saml, saml SSO, SSO, adfs</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.0.6</Version>
+    <Version>3.0.1</Version>
     <PackageLicenseUrl>https://mit-license.org/</PackageLicenseUrl>
     <Authors>Dina Heidar</Authors>
     <Company></Company>
-    <AssemblyVersion>2.0.6.0</AssemblyVersion>
-    <FileVersion>2.0.6.0</FileVersion>
+    <AssemblyVersion>3.0.1.0</AssemblyVersion>
+    <FileVersion>3.0.1.0</FileVersion>
     <PackageProjectUrl>https://github.com/P00159894/SAML2Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/P00159894/SAML2Core</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
@@ -33,11 +33,11 @@
 
   <ItemGroup>
     <PackageReference Include="Cryptography.X509Certificates.Extension" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.1" />
-    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.2.4" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" Version="5.2.4" />
-    <PackageReference Include="Microsoft.IdentityModel.Xml" Version="5.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.6.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens.Saml" Version="5.6.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Xml" Version="5.6.0" />
   </ItemGroup>
 
   <!--<ItemGroup>

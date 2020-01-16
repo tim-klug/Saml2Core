@@ -9,8 +9,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SAML2Core\SAML2Core.csproj" />
-  </ItemGroup>
-
 </Project>
