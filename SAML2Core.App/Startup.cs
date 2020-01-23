@@ -41,10 +41,10 @@ namespace SAML2Core.App
 
                  // There are two ways to provide FederationMetadata:
                  // Option 1 - A FederationMetadata.xml already exists for your application
-                 options.MetadataAddress = @"federatedmetadata.xml";
+                 //options.MetadataAddress = @"federatedmetadata.xml";
 
                  // Option 2 - Have the middleware generate the FederationMetadata.xml file for you
-                 //options.MetadataAddress = Configuration["AppConfiguration:IdentityProvider:MetadataAddress"];
+                 options.MetadataAddress = Configuration["AppConfiguration:IdentityProvider:MetadataAddress"];
 
                  options.RequireMessageSigned = false;
                  options.WantAssertionsSigned = true;
@@ -71,7 +71,6 @@ namespace SAML2Core.App
 
                  // Force Authentication (optional) - Is authentication required?
                  options.ForceAuthn = true;
-
                  options.WantAssertionsSigned = false;
                  options.RequireMessageSigned = true;
 
