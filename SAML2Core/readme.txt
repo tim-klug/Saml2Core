@@ -30,6 +30,6 @@ SOFTWARE.
 
 Getting started Documentation
 ________________________________
-for complete startup documentation you can read more on git.la.gov:
+for complete startup documentation you can read more on github:
 
-https://git.la.gov/OTS/SAML2/blob/master/README.md
+https://github.com/dheida1/Saml2Core/blob/master/README.md

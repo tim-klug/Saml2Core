@@ -7,7 +7,7 @@
     <authors>Dina Heidar</authors>
     <owners>Dina Heidar</owners>
     <language>en-US</language>
-    <projectUrl>https://git.la.gov/OTS/SAML2</projectUrl>
+    <projectUrl>https://github.com/dheida1/Saml2Core</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://mit-license.org/</licenseUrl>
     <description>ASP.NET Core middleware that enables an application to support the SAML2 SSO authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It has been tested with ADFS and IdentityServer4 as well.</description>
