@@ -22,7 +22,6 @@
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Tokens;
@@ -44,7 +43,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// The saml2 security token handler
         /// </summary>
         volatile private Saml2SecurityTokenHandler _saml2SecurityTokenHandler;
-       
+
         /// <summary>
         /// The token validation parameters
         /// </summary>
@@ -95,7 +94,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             WantAssertionsSigned = false;
             RequireMessageSigned = false;
             RequestIdCookieLifetime = TimeSpan.FromMinutes(10);
-            RequestCookieId = new RequestPathBaseCookieBuilder()
+            RequestCookieId = new CookieBuilder()
             {
                 IsEssential = CookieConsentNeeded,
                 HttpOnly = true,
