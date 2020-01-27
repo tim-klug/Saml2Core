@@ -130,7 +130,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
 
             //string assertionHostUrl = new Uri(CurrentUri).Scheme + "://" + new Uri(CurrentUri).Authority;
             var sendAssertionTo = new Uri(new Uri(CurrentUri), Options.CallbackPath).AbsoluteUri;
-            
+
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string authnRequestId = "id" + Guid.NewGuid().ToString("N");
             string assertionConsumerServiceUrl = sendAssertionTo;
@@ -145,7 +145,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             //create and append new response cookie
             Options.RequestCookieId.Name = Options.AuthenticationScheme + relayState;
             Response.Cookies.Append(Options.RequestCookieId.Name, authnRequestId, Options.RequestCookieId.Build(Context));
-      
+
             //create authnrequest call
             string authnRequest = _saml2Service.CreateAuthnRequest(Options, authnRequestId, relayState, assertionConsumerServiceUrl);
 
@@ -308,8 +308,10 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
                 session.SessionIndex = !String.IsNullOrEmpty(session.SessionIndex) ? session.SessionIndex : assertion.ID;
                 //get the session index from assertion so you can use it to logout later
                 identity.AddClaim(new Claim(Saml2ClaimTypes.SessionIndex, session.SessionIndex));
-                identity.AddClaim(new Claim(ClaimTypes.Name, principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value));
-
+                if (principal.Claims.Any(c => c.Type == ClaimTypes.NameIdentifier))
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Name, principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value));
+                }
                 string redirectUrl = !string.IsNullOrEmpty(authenticationProperties.RedirectUri) ? authenticationProperties.RedirectUri : Options.CallbackPath.ToString();
                 Context.Response.Redirect(redirectUrl, true);
                 Context.User = new ClaimsPrincipal(identity);
@@ -345,7 +347,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
             }
 
             string sendSignoutTo = new Uri(new Uri(CurrentUri), Options.SignOutPath).AbsoluteUri;
-           
+
             //prepare AuthnRequest ID, assertion Url and Relay State to prepare for Idp call 
             string logoutRequestId = "id" + Guid.NewGuid().ToString("N");
             GenerateCorrelationId(properties);

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SAML2Core\SAML2Core.csproj" />
+    <PackageReference Include="Saml2Core" Version="3.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
   </ItemGroup>
 
 

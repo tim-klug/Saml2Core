@@ -7,6 +7,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SAML2Core\SAML2Core.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="http://json.schemastore.org/azure-iot-edge-deployment-2.0" /></VisualStudio></ProjectExtensions>
 
 </Project>

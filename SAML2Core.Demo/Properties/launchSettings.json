@@ -19,41 +19,14 @@
     },
     "SAML2Core.Demo": {
       "commandName": "Project",
-      "launchUrl": "https://localhost:5001",
+      // "launchUrl": "https://localhost:5001",
+      "launchUrl": "https://localhost:57950",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      // "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "https://localhost:57950/;http://localhost:57949/"
     }
   }
 }
-
-//{
-//  "iisSettings": {
-//    "windowsAuthentication": false,
-//    "anonymousAuthentication": true,
-//    "iisExpress": {
-//      "applicationUrl": "http://localhost:12098",
-//      "sslPort": 5008
-//    }
-//  },
-//  "profiles": {
-//    "IIS Express": {
-//      "commandName": "IISExpress",
-//      "launchBrowser": true,
-//      "launchUrl": "https://localhost:5008",
-//      "environmentVariables": {
-//        "ASPNETCORE_ENVIRONMENT": "Development"
-//      }
-//    },
-//    "SAML2Core.Demo": {
-//      "commandName": "Project",
-//      "launchBrowser": true,
-//      "environmentVariables": {
-//        "ASPNETCORE_ENVIRONMENT": "Development"
-//      },
-//      "applicationUrl": "https://localhost:5008;http://localhost:5000"
-//    }
-//  }
-//}
