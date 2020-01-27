@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAML2Core", "SAML2Core\SAML2Core.csproj", "{E520237E-685D-4C92-97FF-ECC9ECF22C2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAML2Core.Tests", "Saml2Core.Tests\SAML2Core.Tests.csproj", "{F5A210F3-4A45-4BF7-9548-E824BE27EEC3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAML2Core.Demo", "SAML2Core.Demo\SAML2Core.Demo.csproj", "{09F549B8-7568-470E-B5F4-37703F6CEF11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAML2Core.App", "SAML2Core.App\SAML2Core.App.csproj", "{A633E53B-E7CA-47AE-B684-FB9F8693E56F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{09F549B8-7568-470E-B5F4-37703F6CEF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F549B8-7568-470E-B5F4-37703F6CEF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F549B8-7568-470E-B5F4-37703F6CEF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A633E53B-E7CA-47AE-B684-FB9F8693E56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A633E53B-E7CA-47AE-B684-FB9F8693E56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A633E53B-E7CA-47AE-B684-FB9F8693E56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A633E53B-E7CA-47AE-B684-FB9F8693E56F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
