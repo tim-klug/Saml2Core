@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Saml2Core</id>
-    <version>3.0</version>
+    <id>Saml2Core</id>   
+    <version>3.1.0.0</version>
     <title>Saml2 for .Net Core</title>
     <authors>Dina Heidar</authors>
     <owners>Dina Heidar</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://mit-license.org/</licenseUrl>
     <description>ASP.NET Core middleware that enables an application to support the SAML2 SSO authentication workflow. This middleware is opensource (free to use) and is not dependent on any .NET Framework libraries. It has been tested with ADFS and IdentityServer4 as well.</description>
-    <releaseNotes>Package updates to work with .NetCore 3.1.</releaseNotes>
+    <releaseNotes>Fixes for v3.0</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>saml .net core adfs authentication</tags>
     <dependencies>
@@ -27,6 +27,6 @@
   </metadata>
   <files>
     <file src="readme.txt" target="" />
-    <file src="bin\Debug\netstandard2.0\*.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\*.dll" target="lib\netstandard2.0" />
   </files>
 </package>
