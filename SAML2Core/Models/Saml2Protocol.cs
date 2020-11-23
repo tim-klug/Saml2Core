@@ -2404,7 +2404,7 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         /// </summary>
         public SignatureType()
         {
-            xmlns.Add("ds", "http://www.w3.org/2000/09/xmldsig#");           
+            xmlns.Add("", "http://www.w3.org/2000/09/xmldsig#");           
         }
 
         /// <summary>

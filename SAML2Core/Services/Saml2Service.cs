@@ -337,8 +337,8 @@ namespace SamlCore.AspNetCore.Authentication.Saml2
         {
             XmlNodeList XMLSignatures = xmlDoc.GetElementsByTagName(Saml2Constants.Parameters.Signature, Saml2Constants.Namespaces.DsNamespace);
 
-            // Checking If the Response or the Assertion has been signed once and only once.
-            if (XMLSignatures.Count != 1) return false;
+            // Checking If the Response and/or the Assertion has been signed once and only once.
+            if (XMLSignatures.Count <= Convert.ToInt32(options.RequireMessageSigned) + Convert.ToInt32(options.WantAssertionsSigned)) return false;
 
             var signedXmlDoc = new SignedXml(xmlDoc);
             signedXmlDoc.LoadXml((XmlElement)XMLSignatures[0]);
